@@ -4,10 +4,10 @@ https://automatedcontenthub-hc.web.app/ <br />
 - Login & Register Form.
 - Mobile responsive.
   
-## Features to be added in the next update (pre-release v0.1.0):
-- User profile/dashboard.
+## Next features:
+- User profile/dashboard - store bookmarked contents.
 - Contents bookmark (links).
-- News feed (sources not finalised).
+- Random News feed (sources not finalised).
 
 # Getting Started with Create React App
 
