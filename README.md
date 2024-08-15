@@ -1,4 +1,4 @@
-## Site is now live at https://automatedcontenthub-hc.web.app/
+https://automatedcontenthub-hc.web.app/ <br />
 ## Features added:
 - Login & Register Authentication.
 - Login & Register Form.
