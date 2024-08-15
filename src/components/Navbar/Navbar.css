@@ -1,5 +1,5 @@
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px;
-            background-color: #272626; color: #fafcff; position: relative; z-index: 2;}
+            background-color: #131313; color: rgb(217, 119, 20);; position: relative; z-index: 2;}
 
 .navbar-brand { font-size: 20px }
 

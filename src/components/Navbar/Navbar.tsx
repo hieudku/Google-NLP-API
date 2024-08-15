@@ -43,11 +43,6 @@ const Navbar:React.FC = () => {
                 
                 
             </div>
-
-            <div className="navbar-menu">
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-            </div>
         </nav>
     );
 };
