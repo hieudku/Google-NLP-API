@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "automatedcontenthub-hc",
     "public": "build",
     "ignore": [
       "firebase.json",
