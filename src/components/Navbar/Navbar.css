@@ -1,9 +1,9 @@
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px;
-            background-color: #272626; color: #fafcff; }
+            background-color: #272626; color: #fafcff; position: relative; z-index: 2;}
 
 .navbar-brand { font-size: 20px }
 
-.navbar-toggle { background: none; border: none; font-size: 24px; color: #fafcff; cursor: pointer; display: block;}
+.navbar-toggle { background: none; border: none; font-size: 24px; color: #fafcff; cursor: pointer; display: block; z-index: 10;}
 
 .navbar-menu { display: none; flex-direction: column; align-items: flex-start; }
 
@@ -18,3 +18,46 @@
 
     .navbar-menu a { padding: 0 15px;}
 }
+
+.navbar-panel {
+    position: fixed; /* Fixes the panel to the viewport */
+    top: 0;
+    left: 0;
+    height: 100%; /* Full height of the viewport */
+    width: 250px; /* Width of the side panel */
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px; /* Space for the navbar */
+    transform: translateX(-100%); /* Initially hidden to the left */
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
+  
+  .navbar-panel.open {transform: translateX(0); /* Slide in from the left */}
+  
+  .navbar-panel a {padding: 15px; text-decoration: none; color: white;
+  }
+  
+  .navbar-panel a:hover {background-color: #444;}
+  
+  /* Hide the burger icon on larger screens */
+  @media (min-width: 600px) {
+    .navbar-toggle {display: none;}
+  
+    .navbar-panel {    
+        position: static;
+        transform: none;
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: transparent;
+        padding-top: 0; /* Hide the panel on larger screens */}
+
+    .navbar-panel a { padding: 0 15px; }
+
+    .navbar-panel.open { transform: none; }
+  }
