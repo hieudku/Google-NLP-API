@@ -20,22 +20,22 @@
 }
 
 .navbar-panel {
-    position: fixed; /* Fixes the panel to the viewport */
+    position: fixed; 
     top: 0;
     left: 0;
-    height: 100%; /* Full height of the viewport */
-    width: 250px; /* Width of the side panel */
+    height: 100%; 
+    width: 250px; 
     background-color: #333;
     color: white;
     display: flex;
     flex-direction: column;
-    padding-top: 60px; /* Space for the navbar */
-    transform: translateX(-100%); /* Initially hidden to the left */
+    padding-top: 60px; 
+    transform: translateX(-100%); 
     transition: transform 0.3s ease;
     z-index: 1;
   }
   
-  .navbar-panel.open {transform: translateX(0); /* Slide in from the left */}
+  .navbar-panel.open {transform: translateX(0);}
   
   .navbar-panel a {padding: 15px; text-decoration: none; color: white;
   }
