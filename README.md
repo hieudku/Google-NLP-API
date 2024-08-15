@@ -1,3 +1,4 @@
+# v0.1.0
 https://automatedcontenthub-hc.web.app/ <br />
 ## Features added:
 - Login & Register Authentication.
