@@ -1,6 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from './components/Button/Button';
+
+const AppTest:React.FC = () => {
+  const handleClick = () => {
+    alert('testing button click success');
+  };
+
+  return (
+    <div className="AppTest">
+      <Button label="Click Test" onClick={handleClick}/>
+    </div>
+  )
+}
+
 
 function App() {
   return (
@@ -22,5 +36,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+export default AppTest;

@@ -1,0 +1,12 @@
+.responsive-button {padding: 8px 18px; font-size: 16px; border-radius: 5px; border: none;
+                    background-color: #006fe6; color: #fafcff; cursor: pointer; transition: background-color 0.2s ease;}
+
+.responsive-button:hover { background-color: #004a9a;}
+
+@media (min-width: 600px) {
+    .responsive-button { padding: 12px, 28px; font-size: 18px; }
+}
+
+@media (min-width: 1024px) {
+    .responsive-button { padding: 20px 40px; font-size: 20px; }
+}
