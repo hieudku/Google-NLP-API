@@ -8,15 +8,25 @@ const Register: React.FC = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const manageRegister = (e:React.FormEvent) => {
+    const manageRegister = async (e:React.FormEvent) => {
         e.preventDefault();
         if (password !== confirmPassword) {
             alert("Passwords dont match");
             return;
         }
-
         // firebase registration
-
+        if (password !== confirmPassword) {
+            alert("Passwords don't match");
+            return;
+        }
+        try {
+            const userDetails = await createUserWithEmailAndPassword(auth, email, password);
+            console.log('Registered as: ', userDetails.user);
+        }
+        catch (error) {
+            console.error('Unable to register: ', error);
+            alert('Unable to register. Please try again.');
+        }
         console.log('Registering with: ', email, password);
     };
     // registration form

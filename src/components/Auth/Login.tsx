@@ -13,7 +13,7 @@ const Login: React.FC = () => {
         // firebase auth
         try {
             const userDetails = await signInWithEmailAndPassword(auth, email, password);
-            console.log('logged in with: ', email, password);
+            console.log('logged in as: ', userDetails.user);
         }
         catch (error) {
             console.error('Log in unsuccessful: ', error);
