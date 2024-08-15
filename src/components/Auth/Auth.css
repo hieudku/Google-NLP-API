@@ -1,11 +1,19 @@
+:root {
+    --input-border: #8b8a8b;
+    --input-focus-h: 245;
+    --input-focus-s: 100%;
+    --input-focus-l: 42%;
+  }
 .auth-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    color: #fafcff;
-    background-color: #313131;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: #d9d8d8;
+    background-color: #2f4347;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    display:flex;
+    flex-direction: column;
     
 }
 
@@ -15,7 +23,7 @@
 }
 
 .form-input {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-input label {
@@ -24,13 +32,16 @@
 }
 
 .form-input input {
-    width: 100%;
-    padding: 8px;
+    width: 390px;
     border: 1px solid #fafcff;
     border-radius: 4px;
 }
-
+input {
+    height: 30px;
+    padding: 0px 0px 0px 8px;
+}
 .form-button {
+    margin-top: 20px;
     width: 100%;
     padding: 10px;
     border: none;

@@ -20,13 +20,13 @@ const Register: React.FC = () => {
     // registration form
     return (
         <div className="auth-container">
-            <h2>Register</h2>
+            <h2>Create An Account</h2>
             <form onSubmit={manageRegister}>
 
                 <div className="form-input">
-                    <label htmlFor="email">Email</label>
                     <input
                         type="Email"
+                        placeholder='Email'
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -35,9 +35,9 @@ const Register: React.FC = () => {
                 </div>
 
                 <div className="form-input">
-                    <label htmlFor="password">Password</label>
                     <input
                         type="Password"
+                        placeholder="Password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -46,9 +46,9 @@ const Register: React.FC = () => {
                 </div>
 
                 <div className="form-input">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
                         type="password"
+                        placeholder="Confirm Password"
                         id="confirm-password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}

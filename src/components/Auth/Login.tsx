@@ -17,9 +17,9 @@ const Login: React.FC = () => {
             <h2>Login</h2>
             <form onSubmit={manageLogin}>
                 <div className="form-input">
-                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
+                        placeholder='Email'
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -28,9 +28,9 @@ const Login: React.FC = () => {
                 </div>
 
                 <div className="form-input">
-                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
+                        placeholder='Password'
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
