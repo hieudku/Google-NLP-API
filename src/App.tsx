@@ -2,7 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from './components/Button/Button';
+import Navbar from './components/Navbar/Navbar';
 
+/*
 const AppTest:React.FC = () => {
   const handleClick = () => {
     alert('testing button click success');
@@ -14,11 +16,12 @@ const AppTest:React.FC = () => {
     </div>
   )
 }
-
+*/
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -36,4 +39,4 @@ function App() {
     </div>
   );
 }
-export default AppTest;
+export default App;
