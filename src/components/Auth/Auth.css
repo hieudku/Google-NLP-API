@@ -8,3 +8,39 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-input {
+    margin-bottom: 15px;
+}
+
+.form-input label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #fafcff;
+    border-radius: 4px;
+}
+
+.form-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #006baa;
+    color: #fafcff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-button:hover {
+    background-color: #015a9e;
+}
