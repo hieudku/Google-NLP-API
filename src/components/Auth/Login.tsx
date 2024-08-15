@@ -11,12 +11,12 @@ const Login: React.FC = () => {
         // firebase auth
         console.log('logged in with: ', email, password);
     };
-
+    // login form
     return (
-        <div className="authentication-container">
+        <div className="auth-container">
             <h2>Login</h2>
             <form onSubmit={manageLogin}>
-                <div className="login-input">
+                <div className="form-input">
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
@@ -27,7 +27,7 @@ const Login: React.FC = () => {
                     />
                 </div>
 
-                <div className="login-input">
+                <div className="form-input">
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -38,7 +38,7 @@ const Login: React.FC = () => {
                     />
                 </div>
 
-                <button type="submit" className="auth-button">Login</button>
+                <button type="submit" className="form-button">Login</button>
             </form>
         </div>
     );

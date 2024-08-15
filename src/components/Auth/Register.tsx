@@ -57,8 +57,10 @@ const Register: React.FC = () => {
                 </div>
 
                 <button type="submit" className="form-button">Register</button>
-                
+
             </form>
         </div>
-    )
-}
+    );
+};
+
+export default Register;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar:React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +33,20 @@ const Navbar:React.FC = () => {
             <div className="navbar-brand">App Name</div>
 
             <div className={`navbar-panel ${isOpen ? 'open' : ''}`}>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+                <br />
+                <br />
                 <a href="/">Home</a>
                 <a href="/about">About</a>
                 <a href="/contact">Contact</a>
+                
+                
+            </div>
+
+            <div className="navbar-menu">
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
             </div>
         </nav>
     );
