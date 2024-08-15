@@ -1,3 +1,14 @@
+## Site is now live at https://automatedcontenthub-hc.web.app/
+## Features added:
+- Login & Register Authentication.
+- Login & Register Form.
+- Mobile responsive.
+  
+## Features to be added in the next update (pre-release v0.1.0):
+- User profile/dashboard.
+- Contents bookmark (links).
+- News feed (sources not finalised).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
