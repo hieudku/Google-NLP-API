@@ -1,5 +1,5 @@
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px;
-            background-color: #353434; color: #fafcff; }
+            background-color: #272626; color: #fafcff; }
 
 .navbar-brand { font-size: 20px }
 
@@ -13,8 +13,8 @@
 
 @media (min-width: 600px) { 
     .navbar-menu { display: flex; flex-direction: row;}
+
+    .navbar-toggle { display: none;}
+
+    .navbar-menu a { padding: 0 15px;}
 }
-
-.navbar-toggle { display: none;}
-
-.navbar-menu a { padding: 0 15px;}
