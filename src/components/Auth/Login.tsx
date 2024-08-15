@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import './Auth.css';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const manageLogin = (e: React.FormEvent) => {
+    const manageLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // firebase auth
-        console.log('logged in with: ', email, password);
+        try {
+            const userDetails = await signInWithEmailAndPassword(auth, email, password);
+            console.log('logged in with: ', email, password);
+        }
+        catch (error) {
+            console.error('Log in unsuccessful: ', error);
+            alert('Login failed. Invalid email or password')
+        }
     };
     // login form
     return (
