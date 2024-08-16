@@ -8,6 +8,8 @@ import Register from './components/Auth/Register';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Feed from './components/HomeFeed/Feed'
 import Dashboard from './components/Dashboard';
+import ContactMe from './components/Misc/Contact';
+import AboutThisApp from './components/Misc/About';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
@@ -39,6 +41,8 @@ function App() {
           />
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
+        <Route path="/contact" element={<ContactMe />} />
+        <Route path="/about" element={<AboutThisApp />} />
       </Routes>
     </div>
     </Router>

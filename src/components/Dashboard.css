@@ -21,11 +21,15 @@ textarea, input[type="text"] {
 
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #2e2e2e;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+button:hover {
+    background-color: #019e6c;
 }
 
 button:disabled {
