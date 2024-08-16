@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css'; 
+import SentimentExplanation from './SentimentExplaination';
 
 const Dashboard: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -76,6 +77,8 @@ const Dashboard: React.FC = () => {
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude}</p>
                 </div>
             )}
+            <SentimentExplanation />
+
         </div>
     );
 };
