@@ -12,6 +12,7 @@
 import * as functions from "firebase-functions";
 import * as language from "@google-cloud/language";
 import {Request, Response} from "express";
+import * as cors from "cors";
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
@@ -23,34 +24,39 @@ import {Request, Response} from "express";
 // Initialize the Google Cloud Natural Language client
 const client = new language.LanguageServiceClient();
 
+const corsHandler = cors({origin: true});
+
 export const analyzeText = functions.
   https.onRequest(
     async (
       req: Request,
       res: Response) => {
-      const text = req.query.text as string;
+      corsHandler(req, res, async () => {
+        const text = req.query.text as string;
 
-      if (!text) {
-        res.status(400).send("Text is required");
-        return;
-      }
+        if (!text) {
+          res.status(400).send("Text is required");
+          return;
+        }
 
-      try {
-        // Perform sentiment analysis
-        const [result] = await client.analyzeSentiment({
-          document: {
-            content: text,
-            type: "PLAIN_TEXT"}});
-        const sentiment = result.documentSentiment;
+        try {
+          // Perform sentiment analysis
+          const [result] = await client.analyzeSentiment({
+            document: {
+              content: text,
+              type: "PLAIN_TEXT"}});
+          const sentiment = result.documentSentiment;
 
-        res.json({
-          sentiment: {
-            score: sentiment?.score,
-            magnitude: sentiment?.magnitude,
-          },
-        });
-      } catch (error) {
-        console.error("Error analyzing text:", error);
-        res.status(500).send("Error analyzing text");
-      }
+          res.json({
+            sentiment: {
+              score: sentiment?.score,
+              magnitude: sentiment?.magnitude,
+            },
+          });
+        } catch (error) {
+          console.error("Error analyzing text:", error);
+          res.status(500).send("Error analyzing text");
+        }
+      });
     });
+
