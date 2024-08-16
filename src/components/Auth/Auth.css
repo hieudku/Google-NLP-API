@@ -12,6 +12,9 @@
     
 }
 
+h2 {
+    color: #333;
+}
 .auth-container h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -34,6 +37,7 @@
 input {
     height: 30px;
     padding: 0px 0px 0px 8px;
+    max-width: 100%;
 }
 .form-button {
     margin-top: 20px;

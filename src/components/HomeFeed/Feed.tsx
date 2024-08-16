@@ -27,9 +27,10 @@ const Feed:React.FC = () => {
             setError(null);
             try {
                 const response = await fetch(
-                    `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=76fda4ae21f64c0fb0175cd414e6d749`
+                    `https://newsapi.org/v2/top-headlines?`+`country=us&`+`category=${category}&apiKey=76fda4ae21f64c0fb0175cd414e6d749`
                 );
                 const data = await response.json();
+                console.log(data);
                 if (data.status == 'ok') {
                     setArticles(data.articles);
                 }

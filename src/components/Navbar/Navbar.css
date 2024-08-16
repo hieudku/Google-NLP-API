@@ -1,3 +1,6 @@
+body {
+  margin: 0;
+}
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px;
             background-color: #131313; color: rgb(217, 119, 20);; position: relative; z-index: 2;}
 

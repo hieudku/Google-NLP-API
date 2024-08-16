@@ -7,8 +7,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    padding: 0 2em;
     background-color: #f4f4f4;
+    
 }
 
 /* Title Styling */
@@ -27,6 +27,7 @@ body {
     flex-wrap: wrap;
     gap: 1em;
     margin-bottom: 2em;
+    
 }
 
 .menu li {
@@ -63,7 +64,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5em;
     justify-content: center;
-    padding: 2em 0;
+    padding: 2em 2em;
     max-width: 1200px;
     margin: 0 auto;
 }
