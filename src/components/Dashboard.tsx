@@ -41,9 +41,12 @@ const Dashboard: React.FC = () => {
             <h1>Sentiment Analysis Dashboard</h1>
 
             <div className="input-section">
-                <p>Insert text here to analyze. **Note: Authenticated users can save results and access to URL analysis </p>
+                <p><strong>Insert text here to analyze.</strong> **Note: Authenticated users will be able to save results, access to entity analysis and URL analysis (soon). </p>
                 <br />
-                <p>Start with a news article below...or something else</p>
+                <p>Note: Long text will take a minute or two to analyze, please be patient and try again if it doesn't run the first time.</p>
+                <br />
+                <p>Start with a news article below...or something else.</p>
+                
                 <textarea
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
