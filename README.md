@@ -15,6 +15,10 @@ https://automatedcontenthub-hc.web.app/<br />
 
 - User Authentication: Create an account, log in and save your analysis history in the Firestore database securely.
 
+- URL analysis: just copy and paste the url to perform the analysis.
+<br />
+<br />
+<br />
 # v0.1.0
 
 ## Features added:
