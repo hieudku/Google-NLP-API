@@ -1,9 +1,4 @@
-:root {
-    --input-border: #8b8a8b;
-    --input-focus-h: 245;
-    --input-focus-s: 100%;
-    --input-focus-l: 42%;
-  }
+
 .auth-container {
     max-width: 400px;
     margin: 50px auto;
