@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Feed.css';
+import defaultImage from '../../Resouces/header-news.png';
 
 interface Article {
     source: {
@@ -20,8 +21,6 @@ const Feed: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [category, setCategory] = useState<string>('sport');
-
-    const defaultImage = 'path_to_default_image.jpg'; // Replace with your default image path
 
     useEffect(() => {
         const fetchNews = async () => {

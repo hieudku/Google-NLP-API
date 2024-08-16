@@ -115,6 +115,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-height: 400px;
 }
 
 .article-content h2 {
