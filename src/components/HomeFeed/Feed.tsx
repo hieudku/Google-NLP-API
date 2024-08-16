@@ -29,7 +29,7 @@ const Feed: React.FC = () => {
             try {
                 // Fetch from Newsdata.io using the query parameter
                 const response = await fetch(
-                    `https://newsdata.io/api/1/news?apikey=pub_5100186ae261d664f8c231053c716124723c0&q=${category}`
+                    `https://newsdata.io/api/1/news?apikey=pub_5100186ae261d664f8c231053c716124723c0&q=${category}&language=en`
                 );
                 const data = await response.json();
 
