@@ -1,5 +1,22 @@
+# v0.2.0 Release Notes
+https://automatedcontenthub-hc.web.app/<br />
+## Release Date: 16 Aug 2024
+
+## New Features:
+- Google Natural Language API Integration for text analysis.
+
+- Sentiment Analysis: Users can now analyze the sentiment of input text directly through the application.
+
+
+## Upcoming Features:
+- More Functional User Dashboard: For managing, saving and viewing analysis results as well as sources.
+
+- Entity Analysis: the identification of key entities (e.g., names, organizations) within the text
+
+- User Authentication: Create an account, log in and save your analysis history in the Firestore database securely.
+
 # v0.1.0
-https://automatedcontenthub-hc.web.app/ <br />
+
 ## Features added:
 - Login & Register Authentication.
 - Login & Register Form.
