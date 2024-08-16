@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 const Navbar:React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const panelRef = useRef<HTMLDivElement>(null);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
+    const clickOutsidePanel = (event: MouseEvent) => {
+        if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', clickOutsidePanel);
+        return () => {
+            document.removeEventListener('mousedown', clickOutsidePanel);
+        };
+    }, []);
 
     return (
         <nav className="navbar">
@@ -30,9 +44,9 @@ const Navbar:React.FC = () => {
                 </svg>
             </button>
 
-            <div className="navbar-brand">App Name</div>
+            <div className="navbar-brand">v0.1.0</div>
 
-            <div className={`navbar-panel ${isOpen ? 'open' : ''}`}>
+            <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
                 <br />

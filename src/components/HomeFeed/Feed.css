@@ -29,8 +29,8 @@ body {
     margin-bottom: 2em;
     position:sticky;
     position: -webkit-sticky;
-    top: 0;
-    z-index: 999;
+    top: 40px;
+    z-index: 2;
     padding: 1em 0;
     border-bottom: 1px solid #ddd;
     background-color: #f4f4f4;
