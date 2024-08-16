@@ -17,8 +17,7 @@ https://automatedcontenthub-hc.web.app/<br />
 
 - URL analysis: just copy and paste the url to perform the analysis.
 <br />
-<br />
-<br />
+
 # v0.1.0
 
 ## Features added:
