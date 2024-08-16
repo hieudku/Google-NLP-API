@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Feed from './components/HomeFeed/Feed'
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
@@ -26,11 +27,13 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
+        <Route path="/" element={<Feed />} />
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
       </Routes>
     </div>
     </Router>
+    
   );
 }
 export default App;
