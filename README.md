@@ -1,14 +1,38 @@
+# v0.2.0 Release Notes
+https://automatedcontenthub-hc.web.app/<br />
+## Release Date: 16 Aug 2024
+
+## New Features:
+- News articles fetched to app using API, a few topics for now.
+
+- Google Natural Language API Integration for text analysis.
+
+- Sentiment Analysis: Users can now analyze the sentiment of input text directly through the application.
+
+
+## Upcoming Features:
+- Search for any terms and access list of relevant articles/blogs/post for a more streamlined analysis process. 
+
+- More Functional User Dashboard: For managing, saving and viewing analysis results as well as sources.
+
+- Entity Analysis: the identification of key entities (e.g., names, organizations) within the text
+
+- User Authentication: Create an account, log in and save your analysis history in the Firestore database securely.
+
+- URL analysis: just copy and paste the url to perform the analysis.
+<br />
+
 # v0.1.0
-https://automatedcontenthub-hc.web.app/ <br />
+
 ## Features added:
 - Login & Register Authentication.
 - Login & Register Form.
 - Mobile responsive.
   
 ## Next features:
-- User profile/dashboard - store bookmarked contents.
+- User profile/dashboard.
 - Contents bookmark (links).
-- Random News feed (sources not finalised).
+- News feed (sources not finalised).
 
 # Getting Started with Create React App
 
