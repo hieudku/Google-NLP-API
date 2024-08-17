@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Dashboard.css';
 
 const SyntacticAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -31,7 +32,7 @@ const SyntacticAnalysis: React.FC = () => {
     };
     return (
         <div className="dashboard">
-            <h1>Syntactic Analysis</h1>
+            <h2>Syntactic Analysis</h2>
             <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
