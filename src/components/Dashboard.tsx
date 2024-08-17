@@ -44,13 +44,10 @@ const Dashboard: React.FC = () => {
 
     return (
         <div className="dashboard">
-            <h1>Sentiment Analysis Dashboard</h1>
-
+            <h1>Text Analysis Dashboard</h1>
+            <br />
             <div className="input-section">
-                <p><strong>Insert text here to analyze.</strong> **Note: Authenticated users will be able to save results, access to entity analysis and URL analysis (soon). </p>
-                <br />
-                <p>Note: Long text will take a minute or two to analyze, please be patient and try again if it doesn't run the first time.</p>
-                <br />
+                <p><strong>Insert text here to analyze.</strong></p>
                 <p>Start with a news article below...or something else.</p>
                 
                 <textarea
@@ -65,6 +62,7 @@ const Dashboard: React.FC = () => {
             </div>
 
             <div className="input-section">
+            <br />
                 <p>Analyze URL</p>
                 <input
                     type="text"
@@ -82,6 +80,7 @@ const Dashboard: React.FC = () => {
             {sentiment && (
                 <div className="results-section" style={{ color: getColour(sentiment.score)}}>
                     <h3>Sentiment Analysis Results</h3>
+                    <br />
                     <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                 </div>
