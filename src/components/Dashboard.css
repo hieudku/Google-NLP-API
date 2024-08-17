@@ -1,5 +1,5 @@
 .dashboard {
-    padding: 20px;
+    padding: 10px 20px;
     max-width: 800px;
     margin: 0 auto;
     text-align:justify;
@@ -78,27 +78,31 @@ textarea, input[type="text"] {
 .tabs {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    
 }
 
 .tabs button {
-    padding: 10px 20px;
+    padding: 10px 10px;
+    padding-bottom: 10px;
     border: none;
-    background-color: #b4b4b4;
+    background-color: #ececec;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background-color 0.2s ease-in-out;
+    border: 1px solid #dce4e2;
 }
 
 .tabs button.active {
-    background-color: #198419;
-    color: white;
+    background-color: #dce4e2;
+    color: #1e1e1e;
 }
 
 .tab-content {
-    padding: 20px;
-    border: 1px solid #ddd;
+    padding-bottom: 10px;
+    border: 1px solid #dce4e2;
     border-radius: 14px;
+    background-color: #dce4e2;
+    box-shadow: 1px 5px 5px 0px #d5d4d4;
 }
 
 .dashboard-title {
