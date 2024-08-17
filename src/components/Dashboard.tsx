@@ -35,6 +35,12 @@ const Dashboard: React.FC = () => {
         
         setError('URL analysis is not implemented yet.');
     };
+    
+    const getColour = (score: number) => {
+        if (score > 0.2) return 'green';
+        if (score < -0.2) return 'red';
+        return 'gray';
+    }
 
     return (
         <div className="dashboard">
@@ -74,10 +80,10 @@ const Dashboard: React.FC = () => {
             {error && <p className="error-message">{error}</p>}
 
             {sentiment && (
-                <div className="results-section">
+                <div className="results-section" style={{ color: getColour(sentiment.score)}}>
                     <h3>Sentiment Analysis Results</h3>
-                    <p><strong>Sentiment Score:</strong> {sentiment.score}</p>
-                    <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude}</p>
+                    <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
+                    <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                 </div>
             )}
             <SentimentExplanation />
