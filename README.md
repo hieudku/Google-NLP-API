@@ -1,5 +1,22 @@
-# v0.2.0 Release Notes
+# v0.3.0
+## Date: 17 Aug 2024
 https://automatedcontenthub-hc.web.app/<br />
+## Additional Features:
+- Entity Analysis: identification of key entities (e.g., names, organizations) within the text.
+
+- Analysis Dashboard Tabs: Switch between Sentiment analysis and Entity analysis functions.
+
+## Upcoming Features:
+- Search for any terms and access list of relevant articles/blogs/post for a more streamlined analysis process. 
+
+- More Functional User Dashboard: For managing, saving and viewing analysis results as well as sources.
+
+- User Authentication: Create an account, log in and save your analysis history in the Firestore database securely.
+
+- URL analysis: just copy and paste the url to perform the analysis.
+<br />
+# v0.2.0
+
 ## Release Date: 16 Aug 2024
 
 ## New Features:
@@ -9,17 +26,6 @@ https://automatedcontenthub-hc.web.app/<br />
 
 - Sentiment Analysis: Users can now analyze the sentiment of input text directly through the application.
 
-
-## Upcoming Features:
-- Search for any terms and access list of relevant articles/blogs/post for a more streamlined analysis process. 
-
-- More Functional User Dashboard: For managing, saving and viewing analysis results as well as sources.
-
-- Entity Analysis: the identification of key entities (e.g., names, organizations) within the text
-
-- User Authentication: Create an account, log in and save your analysis history in the Firestore database securely.
-
-- URL analysis: just copy and paste the url to perform the analysis.
 <br />
 
 # v0.1.0
