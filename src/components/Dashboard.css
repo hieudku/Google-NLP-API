@@ -20,7 +20,7 @@ textarea, input[type="text"] {
     border-radius: 5px;
 }
 
-button {
+.dashboard-button {
     padding: 10px 20px;
     background-color: #2e2e2e;
     color: white;
@@ -29,11 +29,11 @@ button {
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-button:hover {
+.dashboard-button:hover {
     background-color: #019e6c;
 }
 
-button:disabled {
+.dashboard-button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }

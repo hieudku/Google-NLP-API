@@ -59,7 +59,7 @@ const Dashboard: React.FC = () => {
                     placeholder="Enter text for sentiment analysis"
                     rows={5}
                 />
-                <button onClick={analyzeText} disabled={loading}>
+                <button className="dashboard-button" onClick={analyzeText} disabled={loading}>
                     {loading ? 'Analyzing...' : 'Analyze Text'}
                 </button>
             </div>
@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
                     onChange={(e) => setInputUrl(e.target.value)}
                     placeholder="Enter URL to analyze"
                 />
-                <button onClick={analyzeUrl} disabled={loading}>
+                <button className="dashboard-button" onClick={analyzeUrl} disabled={loading}>
                     {loading ? 'Analyzing...' : 'Analyze URL'}
                 </button>
             </div>

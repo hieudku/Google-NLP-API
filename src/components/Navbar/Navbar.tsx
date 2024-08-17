@@ -36,7 +36,7 @@ const Navbar:React.FC = () => {
                     >
                     <path
                         d="M3 6H21M3 12H21M3 18H21"
-                        stroke="white"
+                        stroke="black"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -47,13 +47,13 @@ const Navbar:React.FC = () => {
             <div className="navbar-brand">v0.2.0</div>
 
             <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
+                <a className= "navbar-link" href="/login">Login</a>
+                <a className= "navbar-link" href="/register">Register</a>
                 <br />
                 <br />
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
+                <a className= "navbar-link" href="/">Home</a>
+                <a className= "navbar-link" href="/about">About</a>
+                <a className= "navbar-link" href="/contact">Contact</a>
                 
                 
             </div>
