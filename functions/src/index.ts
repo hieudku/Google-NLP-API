@@ -27,66 +27,70 @@ const client = new language.LanguageServiceClient();
 const corsHandler = cors({origin: true});
 
 // Sentiment Analysis
-export const analyzeText = functions.
-  https.onRequest(
-    async (
-      req: Request,
-      res: Response) => {
-      corsHandler(req, res, async () => {
-        const text = req.query.text as string;
+export const analyzeText = functions.https.onRequest(
+  async (req: Request, res: Response) => {
+    corsHandler(req, res, async () => {
+      const text = req.query.text as string;
 
-        if (!text) {
-          res.status(400).send("Text is required");
-          return;
-        }
+      if (!text) {
+        res.status(400).send("Text is required");
+        return;
+      }
 
-        try {
-          // Perform sentiment analysis
-          const [result] = await client.analyzeSentiment({
-            document: {
-              content: text,
-              type: "PLAIN_TEXT"}});
-          const sentiment = result.documentSentiment;
+      try {
+        // Perform sentiment analysis
+        const [result] = await client.analyzeSentiment({
+          document: {
+            content: text,
+            type: "PLAIN_TEXT",
+          },
+        });
+        const sentiment = result.documentSentiment;
 
-          res.json({
-            sentiment: {
-              score: sentiment?.score,
-              magnitude: sentiment?.magnitude,
-            },
-          });
-        } catch (error) {
-          console.error("Error analyzing text:", error);
-          res.status(500).send("Error analyzing text");
-        }
-      });
+        res.json({
+          sentiment: {
+            score: sentiment?.score,
+            magnitude: sentiment?.magnitude,
+          },
+        });
+      } catch (error) {
+        console.error("Error analyzing text:", error);
+        res.status(500).send("Error analyzing text");
+      }
     });
+  }
+);
 
 // Entity Analysis
-export const analyzeEntities = functions.https.onRequest(async (req, res) => {
-  const text = req.query.text as string;
+export const analyzeEntities = functions.https.onRequest(
+  async (req: Request, res: Response) => {
+    corsHandler(req, res, async () => {
+      const text = req.query.text as string;
 
-  if (!text) {
-    res.status(400).send("No text provided");
-    return;
-  }
+      if (!text) {
+        res.status(400).send("No text provided");
+        return;
+      }
 
-  try {
-    const [result] = await client.analyzeEntities({
-      document: {
-        content: text,
-        type: "PLAIN_TEXT",
-      },
+      try {
+        const [result] = await client.analyzeEntities({
+          document: {
+            content: text,
+            type: "PLAIN_TEXT",
+          },
+        });
+
+        const entities = result.entities?.map((entity) => ({
+          name: entity.name,
+          type: entity.type,
+          salience: entity.salience,
+        }));
+
+        res.json({entities});
+      } catch (error) {
+        console.error("Error analyzing entities:", error);
+        res.status(500).send("Error analyzing entities");
+      }
     });
-
-    const entities = result.entities?.map((entity) => ({
-      name: entity.name,
-      type: entity.type,
-      salience: entity.salience,
-    }));
-
-    res.json({entities});
-  } catch (error) {
-    console.error("Error analyzing entities:", error);
-    res.status(500).send("Error analyzing entities");
   }
-});
+);

@@ -57,7 +57,7 @@ textarea, input[type="text"] {
 .results-section {
     padding: 1em;
     border-radius: 5px;
-    color: white;
+    color: #1f1f1f;
     margin-top: 1em;
 }
 
@@ -91,7 +91,7 @@ textarea, input[type="text"] {
 }
 
 .tabs button.active {
-    background-color: #007bff;
+    background-color: #198419;
     color: white;
 }
 
@@ -104,4 +104,7 @@ textarea, input[type="text"] {
 .dashboard-title {
     text-align: center;
     margin-bottom: 30px;
+}
+ul {
+    list-style-type: none;
 }
