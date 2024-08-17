@@ -15,6 +15,7 @@ https://automatedcontenthub-hc.web.app/<br />
 
 - URL analysis: just copy and paste the url to perform the analysis.
 <br />
+
 # v0.2.0
 
 ## Release Date: 16 Aug 2024
