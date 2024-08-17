@@ -26,6 +26,7 @@ const client = new language.LanguageServiceClient();
 
 const corsHandler = cors({origin: true});
 
+// Sentiment Analysis
 export const analyzeText = functions.
   https.onRequest(
     async (
@@ -60,3 +61,32 @@ export const analyzeText = functions.
       });
     });
 
+// Entity Analysis
+export const analyzeEntities = functions.https.onRequest(async (req, res) => {
+  const text = req.query.text as string;
+
+  if (!text) {
+    res.status(400).send("No text provided");
+    return;
+  }
+
+  try {
+    const [result] = await client.analyzeEntities({
+      document: {
+        content: text,
+        type: "PLAIN_TEXT",
+      },
+    });
+
+    const entities = result.entities?.map((entity) => ({
+      name: entity.name,
+      type: entity.type,
+      salience: entity.salience,
+    }));
+
+    res.json({entities});
+  } catch (error) {
+    console.error("Error analyzing entities:", error);
+    res.status(500).send("Error analyzing entities");
+  }
+});
