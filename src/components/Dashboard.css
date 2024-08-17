@@ -90,17 +90,18 @@ textarea, input[type="text"] {
     font-size: 14px;
     transition: background-color 0.2s ease-in-out;
     border: 1px solid #dce4e2;
+    
 }
 
 .tabs button.active {
     background-color: #dce4e2;
     color: #1e1e1e;
+    box-shadow: 1px -5px 5px 0px #d5d4d4;
 }
 
 .tab-content {
     padding-bottom: 10px;
     border: 1px solid #dce4e2;
-    border-radius: 14px;
     background-color: #dce4e2;
     box-shadow: 1px 5px 5px 0px #d5d4d4;
 }

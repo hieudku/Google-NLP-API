@@ -94,3 +94,38 @@ export const analyzeEntities = functions.https.onRequest(
     });
   }
 );
+
+// Syntactical analysis
+export const analyzeSyntax = functions.https.onRequest(
+  async (req: Request, res: Response) => {
+    corsHandler(req, res, async () => {
+      const text = req.query.text as string;
+
+      if (!text) {
+        res.status(400).send("Text is required");
+        return;
+      }
+
+      try {
+        // Perform syntactic analysis
+        const [result] = await client.analyzeSyntax({
+          document: {
+            content: text,
+            type: "PLAIN_TEXT",
+          },
+        });
+
+        const tokens = result.tokens?.map((token) => ({
+          text: token.text?.content,
+          partOfSpeech: token.partOfSpeech?.tag,
+          dependencyEdge: token.dependencyEdge?.label,
+        }));
+
+        res.json({tokens});
+      } catch (error) {
+        console.error("Error analyzing syntax:", error);
+        res.status(500).send("Error analyzing syntax");
+      }
+    });
+  }
+);
