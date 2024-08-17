@@ -1,19 +1,18 @@
+# v0.4.0
+## Date: 18 Aug 2024
+https://automatedcontenthub-hc.web.app/<br />
+## Additional Features:
+- Syntactic Analysis: Analyzing the grammatical structure of a sentence to understand its syntax.
+<br />
+
 # v0.3.0
 ## Date: 17 Aug 2024
-https://automatedcontenthub-hc.web.app/<br />
+
 ## Additional Features:
 - Entity Analysis: identification of key entities (e.g., names, organizations) within the text.
 
 - Analysis Dashboard Tabs: Switch between Sentiment analysis and Entity analysis functions.
 
-## Upcoming Features:
-- Search for any terms and access list of relevant articles/blogs/post for a more streamlined analysis process. 
-
-- More Functional User Dashboard: For managing, saving and viewing analysis results as well as sources.
-
-- User Authentication: Create an account, log in and save your analysis history in the Firestore database securely.
-
-- URL analysis: just copy and paste the url to perform the analysis.
 <br />
 
 # v0.2.0
@@ -35,11 +34,6 @@ https://automatedcontenthub-hc.web.app/<br />
 - Login & Register Authentication.
 - Login & Register Form.
 - Mobile responsive.
-  
-## Next features:
-- User profile/dashboard.
-- Contents bookmark (links).
-- News feed (sources not finalised).
 
 # Getting Started with Create React App
 
