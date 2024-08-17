@@ -74,3 +74,34 @@ textarea, input[type="text"] {
 }
 
 .sentiment-info { line-height: 1.5em;}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #b4b4b4;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.tabs button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+}
+
+.dashboard-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
