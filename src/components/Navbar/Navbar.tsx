@@ -44,7 +44,7 @@ const Navbar:React.FC = () => {
                 </svg>
             </button>
 
-            <div className="navbar-brand">v0.2.0</div>
+            <div className="navbar-brand">v0.3.0</div>
 
             <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>
                 <a className= "navbar-link" href="/login">Login</a>

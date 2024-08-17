@@ -50,7 +50,7 @@ const EntityAnalysis: React.FC = () => {
                     <ul>
                         {entities.map((entity, index) => (
                             <li key={index}>
-                                <strong>{entity.name}</strong> - {entity.type} (Salience: {entity.salience})
+                                <strong>{entity.name}</strong> - {entity.type} (Salience: {entity.salience.toPrecision(6)})
                             </li>
                         ))}
                     </ul>
