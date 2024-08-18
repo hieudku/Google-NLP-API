@@ -1,7 +1,18 @@
+## v0.4.5
+- Fixed: Text overlap result sections, added category for each text.
+
+## v0.4.4
+- Fixed: x label, set result box height to data length.
+
+## v0.4.3
+- Added 3Djs Visualization for entity analysis results.
+
+## v0.4.2
+- Added Pie chart for visualization with D3js library from sentences.
+  
 ## v0.4.1
-## Additional Features:
-- Sentence-level sentiment analysis.
-- Pie chart for visualization with D3js library from sentences.
+- Added Sentence-level sentiment analysis.
+
 <br />
 
 # v0.4.0
