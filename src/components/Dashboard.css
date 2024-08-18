@@ -84,23 +84,23 @@ textarea, input[type="text"] {
     padding: 10px 10px;
     padding-bottom: 10px;
     border: none;
-    background-color: #cecdcd;
+    background-color: #f4f4f4;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s ease-in-out;
-    border: 1px solid #f0f1f1;
-    
+    border: 1px solid #cccccc;
+    border-radius: 20px;
 }
 
 .tabs button.active {
-    background-color: #f0f1f1;
+    background-color: #cecdcd;
     color: #1e1e1e;
-    border-top: 1px solid #f0f1f1;
+    border: 1px solid #cccccc;
 }
 
 .tab-content {
     padding-bottom: 10px;
-    border: 1px solid #f0f1f1;
+    border: 1px solid #f4f4f4;
     background-color: #f4f4f4;
 }
 
