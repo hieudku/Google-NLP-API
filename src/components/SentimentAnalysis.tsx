@@ -135,7 +135,7 @@ const SentimentAnalysis: React.FC = () => {
                     <h3>Sentiment Analysis by Sentences</h3>
                     {sentences.map((sentence, index) => (
                         <div key={index} className="sentence-result" style={{ color: getColour(sentence.score) }}>
-                            <p>{index}. {sentence.text}</p>
+                            <p>{sentence.text}</p>
                             <p><strong>Score:</strong> {sentence.score.toPrecision(4)}</p>
                             <p><strong>Magnitude:</strong> {sentence.magnitude.toPrecision(4)}</p>
                             <br />
