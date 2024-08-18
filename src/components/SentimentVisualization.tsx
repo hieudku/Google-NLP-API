@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import './Dashboard.css';
 
 interface SentimentPieChartIF {
     data: {
@@ -19,10 +20,9 @@ const SentimentPieChart: React.FC<SentimentPieChartIF> = ({ data }) => {
     const height = 400;
     const radius = Math.min(width, height) / 2;
 
-    // Define custom colors for each sentiment
     const color = d3.scaleOrdinal<string>()
         .domain(['positive', 'neutral', 'negative'])
-        .range(['#4CAF50', '#B9B9B9', '#F44336']); // Green, Yellow, Red
+        .range(['#4CAF50', '#B9B9B9', '#F44336']); // Green, Gray, Red
 
     const pie = d3.pie<PieData>().value(d => d.value);
     const arc = d3.arc<d3.PieArcDatum<PieData>>()
@@ -34,13 +34,19 @@ const SentimentPieChart: React.FC<SentimentPieChartIF> = ({ data }) => {
     );
 
     return (
-        <svg width={width} height={height}>
+        <svg
+            className="pie-chart"
+            width={width}
+            height={height}
+            viewBox={`0 0 ${width} ${height}`}
+            style={{ maxWidth: '100%', height: 'auto', margin: '0 auto', display: 'block' }}
+        >
             <g transform={`translate(${width / 2},${height / 2})`}>
                 {dataReady.map((d, i) => (
                     <path
                         key={i}
                         d={arc(d) || undefined}
-                        fill={color(d.data.type)} // Now TypeScript understands `type` is a string
+                        fill={color(d.data.type)}
                     />
                 ))}
             </g>
