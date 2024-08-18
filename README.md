@@ -1,3 +1,9 @@
+## v0.4.1
+## Additional Features:
+- Sentence-level sentiment analysis.
+- Pie chart for visualization with D3js library from sentences.
+<br />
+
 # v0.4.0
 ## Date: 18 Aug 2024
 https://automatedcontenthub-hc.web.app/<br />
