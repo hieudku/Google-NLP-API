@@ -23,7 +23,7 @@ textarea, input[type="text"] {
 
 .dashboard-button {
     padding: 10px 20px;
-    background-color: #2e2e2e;
+    background-color: #199f75;
     color: white;
     border: none;
     border-radius: 5px;
@@ -31,7 +31,7 @@ textarea, input[type="text"] {
     transition: background-color 0.2s ease;
 }
 .dashboard-button:hover {
-    background-color: #019e6c;
+    background-color: #017c55;
 }
 
 .dashboard-button:disabled {
@@ -44,7 +44,7 @@ textarea, input[type="text"] {
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
 }
 
 .error-message {
@@ -76,7 +76,7 @@ textarea, input[type="text"] {
 
 .tabs {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     
 }
 
@@ -84,25 +84,24 @@ textarea, input[type="text"] {
     padding: 10px 10px;
     padding-bottom: 10px;
     border: none;
-    background-color: #ececec;
+    background-color: #cecdcd;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s ease-in-out;
-    border: 1px solid #dce4e2;
+    border: 1px solid #f0f1f1;
     
 }
 
 .tabs button.active {
-    background-color: #dce4e2;
+    background-color: #f0f1f1;
     color: #1e1e1e;
-    box-shadow: 1px -5px 5px 0px #d5d4d4;
+    border-top: 1px solid #f0f1f1;
 }
 
 .tab-content {
     padding-bottom: 10px;
-    border: 1px solid #dce4e2;
-    background-color: #dce4e2;
-    box-shadow: 1px 5px 5px 0px #d5d4d4;
+    border: 1px solid #f0f1f1;
+    background-color: #f4f4f4;
 }
 
 .dashboard-title {
