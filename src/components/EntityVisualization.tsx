@@ -19,11 +19,12 @@ const EntityVisualization: React.FC<EntityVisualization> = ({ data }) => {
         if (!svgRef.current) return;
 
         const svg = d3.select(svgRef.current);
-        svg.selectAll('*').remove();
+        svg.selectAll('*').remove(); 
 
-        const margin = { top: 20, right: 30, bottom: 40, left: 100 };
+        const margin = { top: 20, right: 30, bottom: 60, left: 100 }; 
+        const barHeight = 25;
         const width = 800;
-        const height = 400;
+        const height = Math.max(50, barHeight * data.length + margin.top + margin.bottom);
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
 
@@ -36,7 +37,6 @@ const EntityVisualization: React.FC<EntityVisualization> = ({ data }) => {
             .range([0, innerHeight])
             .padding(0.1);
 
-        
         svg.attr("viewBox", `0 0 ${width} ${height}`)
            .attr("preserveAspectRatio", "xMidYMid meet");
 
@@ -57,6 +57,15 @@ const EntityVisualization: React.FC<EntityVisualization> = ({ data }) => {
             .attr("transform", `translate(0,${innerHeight})`)
             .call(d3.axisBottom(x).ticks(width / 80))
             .attr("font-size", '12px');
+
+        
+        g.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", innerWidth / 2)
+            .attr("y", innerHeight + margin.bottom - 20)
+            .text("Salience")
+            .style("font-size", '14px')
+            .style("font-family", "Arial, sans-serif");
 
         g.append("g")
             .call(d3.axisLeft(y).tickSize(0))
