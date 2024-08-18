@@ -13,13 +13,6 @@ import * as functions from "firebase-functions";
 import * as language from "@google-cloud/language";
 import {Request, Response} from "express";
 import * as cors from "cors";
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
-
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
 
 // Initialize the Google Cloud Natural Language client
 const client = new language.LanguageServiceClient();
@@ -38,20 +31,26 @@ export const analyzeText = functions.https.onRequest(
       }
 
       try {
-        // Perform sentiment analysis
         const [result] = await client.analyzeSentiment({
           document: {
             content: text,
             type: "PLAIN_TEXT",
           },
+          encodingType: "UTF8",
         });
+
         const sentiment = result.documentSentiment;
+        const sentences = result.sentences?.map((sentence) => ({
+          text: sentence.text?.content,
+          sentiment: sentence.sentiment,
+        }));
 
         res.json({
           sentiment: {
             score: sentiment?.score,
             magnitude: sentiment?.magnitude,
           },
+          sentences: sentences || [],
         });
       } catch (error) {
         console.error("Error analyzing text:", error);
