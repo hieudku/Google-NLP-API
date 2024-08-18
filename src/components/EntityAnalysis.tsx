@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from 'axios';
 import './EntityAnalysis.css';
 import './Dashboard.css';
+import EntityVisualization from "./EntityVisualization";
 
 const EntityAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -46,15 +47,25 @@ const EntityAnalysis: React.FC = () => {
             {error && <p className="error-message">{error}</p>}
             {entities && (
                 <div className="results-section">
-                    <h3>Entities</h3>
-                    <ul>
+                    <h3>Result notes:</h3>
+                    <br />
+                    <p><strong>Entity Analysis</strong> feature extracts significant entities (people, locations, organizations..) from text and categorizes them by type.</p>
+                    <p><strong>Salience Score</strong> measure their importance in the text, the higher the score the more important and prominent.</p>
+                    <br />
+                <h3>Entities</h3>
+                <EntityVisualization data={entities} />
+                
+                <h3>Entities list</h3>
+                <ul>
                         {entities.map((entity, index) => (
                             <li key={index}>
                                 <strong>{entity.name}</strong> - {entity.type} (Salience: {entity.salience.toPrecision(6)})
                             </li>
                         ))}
                     </ul>
-                </div>
+            </div>
+                
+            
             )}
         </div>
     );
