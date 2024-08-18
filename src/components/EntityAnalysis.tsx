@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from 'axios';
 import './EntityAnalysis.css';
 import './Dashboard.css';
+import EntityVisualization from "./EntityVisualization";
 
 const EntityAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -46,15 +47,9 @@ const EntityAnalysis: React.FC = () => {
             {error && <p className="error-message">{error}</p>}
             {entities && (
                 <div className="results-section">
-                    <h3>Entities</h3>
-                    <ul>
-                        {entities.map((entity, index) => (
-                            <li key={index}>
-                                <strong>{entity.name}</strong> - {entity.type} (Salience: {entity.salience.toPrecision(6)})
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <h3>Entities</h3>
+                <EntityVisualization data={entities} />
+            </div>
             )}
         </div>
     );
