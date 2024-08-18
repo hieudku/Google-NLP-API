@@ -123,13 +123,14 @@ const SentimentAnalysis: React.FC = () => {
                     <h3>Overall Sentiment Analysis Results</h3>
                     <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
-                </div>
-            )}
-                <div className="results-section">
+                    <div className="results-section">
                 <h3>Sentiment Distribution Chart</h3><br />
-                
                 <SentimentPieChart data={calculateSentimentDistribution()}/>
                 </div>
+                </div>
+                
+            )}
+                
             {sentences.length > 0 && (
                 <div className="results-section">
                     <h3>Sentiment Analysis by Sentences</h3>
