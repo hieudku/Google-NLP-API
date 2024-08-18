@@ -3,7 +3,7 @@ body {
 }
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; padding-left: 50px;
             background-color: #f1f1f1; color: #1d1d1d;; position: relative; z-index: 3; position:sticky;
-            position: -webkit-sticky; top: 0; box-shadow: 5px 2px 5px 1px #b9b9b9;;}
+            position: -webkit-sticky; top: 0; box-shadow: 5px 2px 5px 1px #b9b9b9;}
 
 
 .navbar-toggle { background: none; border: none; font-size: 24px; color: #fafcff; cursor: pointer; display: block; z-index: 1;}
