@@ -47,6 +47,11 @@ const EntityAnalysis: React.FC = () => {
             {error && <p className="error-message">{error}</p>}
             {entities && (
                 <div className="results-section">
+                    <h3>Result notes:</h3>
+                    <br />
+                    <p><strong>Entity Analysis</strong> feature extracts significant entities (people, locations, organizations..) from text and categorizes them by type.</p>
+                    <p><strong>Salience Score</strong> measure their importance in the text, the higher the score the more important and prominent.</p>
+                    <br />
                 <h3>Entities</h3>
                 <EntityVisualization data={entities} />
                 
