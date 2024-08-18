@@ -49,7 +49,18 @@ const EntityAnalysis: React.FC = () => {
                 <div className="results-section">
                 <h3>Entities</h3>
                 <EntityVisualization data={entities} />
+                
+                <h3>Entities list</h3>
+                <ul>
+                        {entities.map((entity, index) => (
+                            <li key={index}>
+                                <strong>{entity.name}</strong> - {entity.type} (Salience: {entity.salience.toPrecision(6)})
+                            </li>
+                        ))}
+                    </ul>
             </div>
+                
+            
             )}
         </div>
     );
