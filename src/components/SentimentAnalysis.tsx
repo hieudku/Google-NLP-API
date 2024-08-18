@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
 import SentimentExplanation from './SentimentExplaination';
-
+import SentimentPieChart from './SentimentVisualization';
 
 interface SentenceSentiment {
     text: string;
     score: number;
     magnitude: number;
+    category: 'positive' | 'neutral' | 'negative';
 }
 
 const SentimentAnalysis: React.FC = () => {
@@ -17,6 +18,24 @@ const SentimentAnalysis: React.FC = () => {
     const [sentences, setSentences] = useState<SentenceSentiment[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    const calculateSentimentDistribution = () => {
+        let positive = 0;
+        let neutral = 0;
+        let negative = 0;
+    
+        sentences.forEach(sentence => {
+            if (sentence.score > 0.2) {
+                positive += 1;
+            } else if (sentence.score < -0.2) {
+                negative += 1;
+            } else {
+                neutral += 1;
+            }
+        });
+    
+        return { positive, neutral, negative };
+    };
 
     const analyzeText = async () => {
         if (!inputText) {
@@ -32,11 +51,23 @@ const SentimentAnalysis: React.FC = () => {
                 { params: { text: inputText } }
             );
 
-            const sentimentData = response.data.sentences.map((sentence: any) => ({
-                text: sentence.text,
-                score: sentence.sentiment.score,
-                magnitude: sentence.sentiment.magnitude,
-            }));
+            const sentimentData = response.data.sentences.map((sentence: any, index: number) => {
+                const sentimentScore = sentence.sentiment.score;
+                let category: 'positive' | 'neutral' | 'negative' = 'neutral';
+
+                if (sentimentScore > 0.2) {
+                    category = 'positive';
+                } else if (sentimentScore < -0.2) {
+                    category = 'negative';
+                }
+
+                return {
+                    text: `${index + 1}. ${sentence.text}`, // Ensure text.content is used
+                    score: sentimentScore,
+                    magnitude: sentence.sentiment.magnitude,
+                    category: category,
+                };
+            });
 
             setSentiment(response.data.sentiment);
             setSentences(sentimentData);
@@ -94,15 +125,17 @@ const SentimentAnalysis: React.FC = () => {
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                 </div>
             )}
-            
+                <div className="results-section">
+                <h3>Sentiment Distribution Chart</h3><br />
+                
+                <SentimentPieChart data={calculateSentimentDistribution()}/>
+                </div>
             {sentences.length > 0 && (
                 <div className="results-section">
-                    
                     <h3>Sentiment Analysis by Sentences</h3>
-                    <br />
                     {sentences.map((sentence, index) => (
                         <div key={index} className="sentence-result" style={{ color: getColour(sentence.score) }}>
-                            <p>{sentence.text}</p>
+                            <p>{index}. {sentence.text}</p>
                             <p><strong>Score:</strong> {sentence.score.toPrecision(4)}</p>
                             <p><strong>Magnitude:</strong> {sentence.magnitude.toPrecision(4)}</p>
                             <br />
@@ -110,10 +143,6 @@ const SentimentAnalysis: React.FC = () => {
                     ))}
                 </div>
             )}
-
-            
-
-
         </div>
     );
 };
