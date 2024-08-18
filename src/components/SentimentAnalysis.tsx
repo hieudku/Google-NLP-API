@@ -3,10 +3,18 @@ import axios from 'axios';
 import './Dashboard.css';
 import SentimentExplanation from './SentimentExplaination';
 
+
+interface SentenceSentiment {
+    text: string;
+    score: number;
+    magnitude: number;
+}
+
 const SentimentAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
     const [inputUrl, setInputUrl] = useState('');
     const [sentiment, setSentiment] = useState<{ score: number, magnitude: number } | null>(null);
+    const [sentences, setSentences] = useState<SentenceSentiment[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -23,7 +31,15 @@ const SentimentAnalysis: React.FC = () => {
                 'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeText', 
                 { params: { text: inputText } }
             );
+
+            const sentimentData = response.data.sentences.map((sentence: any) => ({
+                text: sentence.text,
+                score: sentence.sentiment.score,
+                magnitude: sentence.sentiment.magnitude,
+            }));
+
             setSentiment(response.data.sentiment);
+            setSentences(sentimentData);
         } catch (error) {
             setError('Error analyzing sentiment. Please try again.');
         } finally {
@@ -34,7 +50,7 @@ const SentimentAnalysis: React.FC = () => {
     const analyzeUrl = async () => {
         setError('URL analysis is not implemented yet.');
     };
-    
+
     const getColour = (score: number) => {
         if (score > 0.2) return 'green';
         if (score < -0.2) return 'red';
@@ -70,15 +86,34 @@ const SentimentAnalysis: React.FC = () => {
             </div>
 
             {error && <p className="error-message">{error}</p>}
-
+            <SentimentExplanation />
             {sentiment && (
                 <div className="results-section" style={{ color: getColour(sentiment.score) }}>
-                    <h3>Sentiment Analysis Results</h3>
+                    <h3>Overall Sentiment Analysis Results</h3>
                     <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                 </div>
             )}
-            <SentimentExplanation />
+            
+            {sentences.length > 0 && (
+                <div className="results-section">
+                    
+                    <h3>Sentiment Analysis by Sentences</h3>
+                    <br />
+                    {sentences.map((sentence, index) => (
+                        <div key={index} className="sentence-result" style={{ color: getColour(sentence.score) }}>
+                            <p>{sentence.text}</p>
+                            <p><strong>Score:</strong> {sentence.score.toPrecision(4)}</p>
+                            <p><strong>Magnitude:</strong> {sentence.magnitude.toPrecision(4)}</p>
+                            <br />
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            
+
+
         </div>
     );
 };

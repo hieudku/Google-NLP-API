@@ -10,6 +10,7 @@ import Feed from './components/HomeFeed/Feed'
 import Dashboard from './components/Dashboard';
 import ContactMe from './components/Misc/Contact';
 import AboutThisApp from './components/Misc/About';
+import axios from 'axios';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
