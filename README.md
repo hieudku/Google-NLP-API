@@ -1,3 +1,10 @@
+# v0.5.0
+## Date: 20 Aug 2024
+https://automatedcontenthub-hc.web.app/<br />
+## Additional Feature:
+- Entity Sentiment Analysis: Analyzing the sentiment by each entity identified.
+<br />
+
 ## v0.4.8
 - Added explaination for text dependency
 
@@ -26,7 +33,6 @@
 
 # v0.4.0
 ## Date: 18 Aug 2024
-https://automatedcontenthub-hc.web.app/<br />
 ## Additional Features:
 - Syntactic Analysis: Analyzing the grammatical structure of a sentence to understand its syntax.
 <br />
