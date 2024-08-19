@@ -1,3 +1,10 @@
+# v0.5.0
+## Date: 20 Aug 2024
+https://automatedcontenthub-hc.web.app/<br />
+## Additional Feature:
+- Entity Sentiment Analysis: Analyzing the sentiment by each entity identified.
+<br />
+
 ## v0.4.8
 - Added explaination for text dependency
 
@@ -14,7 +21,7 @@
 - Fixed: x label, set result box height to data length.
 
 ## v0.4.3
-- Added 3Djs Visualization for entity analysis results.
+- Added D3js Visualization for entity analysis results.
 
 ## v0.4.2
 - Added Pie chart for visualization with D3js library from sentences.
@@ -26,7 +33,6 @@
 
 # v0.4.0
 ## Date: 18 Aug 2024
-https://automatedcontenthub-hc.web.app/<br />
 ## Additional Features:
 - Syntactic Analysis: Analyzing the grammatical structure of a sentence to understand its syntax.
 <br />
