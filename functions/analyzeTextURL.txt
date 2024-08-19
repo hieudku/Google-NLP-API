@@ -1,3 +1,4 @@
 https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeText
 https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeEntities
 https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeSyntax
+https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeEntitySentiment
