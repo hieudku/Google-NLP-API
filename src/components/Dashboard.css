@@ -89,7 +89,6 @@ textarea, input[type="text"] {
     font-size: 14px;
     transition: background-color 0.2s ease-in-out;
     border: 1px solid #cccccc;
-    border-radius: 20px;
 }
 
 .tabs button.active {

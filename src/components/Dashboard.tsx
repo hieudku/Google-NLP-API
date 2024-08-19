@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
                     Syntactic Analysis
                 </button>
                 <button onClick={() => setActiveTab('entitiesSentiment')} className={activeTab === 'entitiesSentiment' ? 'active' : ''}>
-                    EntitySentiment
+                    Entity Sentiment
                 </button>
             </div>
             <div className="tab-content">
