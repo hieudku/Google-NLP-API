@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div className="dashboard">
-            <h1 className="dashboard-title">Text Analysis Dashboard</h1>
+            <h1 className="dashboard-title">Enter/paste text to analyze</h1>
             <div className="tabs">
                 <button onClick={() => setActiveTab('sentiment')} className={activeTab === 'sentiment' ? 'active' : ''}>
                     Sentiment Analysis

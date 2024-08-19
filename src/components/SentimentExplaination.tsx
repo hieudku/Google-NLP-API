@@ -3,7 +3,7 @@ import './Dashboard.css'
 const SentimentExplanation: React.FC = () => {
     return (
         <div className="sentiment-info">
-            <h3>Understanding the Results:</h3>
+            <h3>Results note:</h3>
             <br />
             <ul>
                 <li><strong>Sentiment Score:</strong> Ranges from -1.0 (negative-red) to 1.0 (positive-green). A score of 0 indicates neutral-grey sentiment.</li>
