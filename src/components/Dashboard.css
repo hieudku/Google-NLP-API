@@ -175,3 +175,25 @@ ul {
     opacity: 1;
     transition: opacity 0.3s ease;
 }
+/* syntactic legend*/
+.dashboard .legend {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.dashboard .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard .legend-color {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px;
+}

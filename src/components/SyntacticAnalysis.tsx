@@ -44,7 +44,17 @@ const SyntacticAnalysis: React.FC = () => {
             default: return '#000'; // Black - other
         }
     };
-
+    // Legend
+    const legendItems = [
+        { label: 'Noun', color: '#4CAF50' },
+        { label: 'Verb', color: '#2196F3' },
+        { label: 'Adjective', color: '#FFEB3B' },
+        { label: 'Adposition', color: '#FF9800' },
+        { label: 'Pronoun', color: '#9C27B0' },
+        { label: 'Conjunction', color: '#E91E63' },
+        { label: 'Punctuation', color: '#607D8B' },
+        { label: 'Numeral', color: '#00BCD4' },
+    ];
     return (
         <div className="dashboard">
             <h2>Syntactic Analysis</h2>
@@ -62,17 +72,33 @@ const SyntacticAnalysis: React.FC = () => {
 
             {tokens && (
                 <div className="syntactic-analysis-results">
-                    <h3>Syntactic Analysis Results</h3>
-                    <div>
+                    <p><strong>Part of Speech:</strong></p>
+                    <div className="legend">
+                        {legendItems.map((item, index) => (
+                            <div key={index} className="legend-item">
+                                <span
+                                    className="legend-color"
+                                    style={{ backgroundColor: item.color }}
+                                ></span>
+                                {item.label}
+                            </div>
+                        ))}
+                    </div>
+
+                    <p>
+                        Click/hover over each word to reveal additional details about its role in the sentence.
+                    </p><br />
+
+                    <div className="syntactic-tokens">
                         {tokens.map((token, index) => (
                             <span
-                            key={index}
-                            className="token"
-                            style={{ backgroundColor: getColorForPartOfSpeech(token.partOfSpeech) }}
-                            data-tooltip={`Part of Speech: ${token.partOfSpeech}, Dependency: ${token.dependencyEdge}`}
-                        >
-                            {token.text}{' '}
-                        </span>
+                                key={index}
+                                className="token"
+                                style={{ backgroundColor: getColorForPartOfSpeech(token.partOfSpeech) }}
+                                data-tooltip={`Part of Speech: ${token.partOfSpeech}, Dependency: ${token.dependencyEdge}`}
+                            >
+                                {token.text}{' '}
+                            </span>
                         ))}
                     </div>
                 </div>
