@@ -1,3 +1,9 @@
+## v0.4.8
+- Added explaination for text dependency
+
+## v0.4.7
+- Added legend for part of speech.
+  
 ## v0.4.6
 - Added Syntax Visualization to syntactic analysis.
 
