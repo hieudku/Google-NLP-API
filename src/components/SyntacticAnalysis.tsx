@@ -41,7 +41,7 @@ const SyntacticAnalysis: React.FC = () => {
             case 'CONJ': return '#E91E63'; // Pink
             case 'PUNCT': return '#607D8B'; // Gray
             case 'NUM': return '#00BCD4'; // Cyan
-            default: return '#000'; // Black - other
+            default: return '#E0E0E0'; // Black - other
         }
     };
     // Legend
@@ -54,7 +54,25 @@ const SyntacticAnalysis: React.FC = () => {
         { label: 'Conjunction', color: '#E91E63' },
         { label: 'Punctuation', color: '#607D8B' },
         { label: 'Numeral', color: '#00BCD4' },
+        { label: 'Other', color: '#E0E0E0'},
     ];
+
+    const dependencyExplanations = {
+        NSUBJ: 'Nominal subject - subject of a verb.',
+        ADVMOD: 'Adverbial modifier - word or phrase that modifies a verb, adjective, or adverb.',
+        AMOD: 'Adjectival modifier - adjective that modifies a noun.',
+        ROOT: 'Root of the sentence - usually the main verb.',
+        CC: 'Coordinating conjunction - joins elements of equal syntactic importance.',
+        CONJ: 'Conjunct - elements connected by a coordinating conjunction.',
+        P: 'Punctuation - marks the end of a sentence or separates elements.',
+        PREP: 'Preposition - links nouns, pronouns, or phrases to other words in a sentence.',
+        POBJ: 'Object of a preposition.',
+        APPOS: 'Appositional modifier - noun that follows and renames another noun.',
+        NUMBER: 'Numeric modifier - number that modifies a noun.',
+        POSS: 'Possession modifier - indicates ownership.',
+        NN: 'Noun compound modifier - noun used to modify another noun.'
+    };
+
     return (
         <div className="dashboard">
             <h2>Syntactic Analysis</h2>
@@ -88,7 +106,16 @@ const SyntacticAnalysis: React.FC = () => {
                     <p>
                         Click/hover over each word to reveal additional details about its role in the sentence.
                     </p><br />
-
+                    <div className="dependency-explanation">
+                        <h4>Quick Explanation of Dependency Types</h4>
+                        <ul>
+                            {Object.entries(dependencyExplanations).map(([key, value]) => (
+                                <li key={key}>
+                                    <strong>{key}:</strong> {value}
+                                </li>
+                            ))}
+                        </ul>
+                    </div><br />
                     <div className="syntactic-tokens">
                         {tokens.map((token, index) => (
                             <span

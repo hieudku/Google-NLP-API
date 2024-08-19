@@ -151,7 +151,7 @@ ul {
     left: 50%;
     transform: translateX(-50%);
     bottom: 125%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #1f1f1d;
     color: #fff;
     padding: 5px;
     border-radius: 4px;
