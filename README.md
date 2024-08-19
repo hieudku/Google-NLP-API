@@ -5,7 +5,7 @@
 - Fixed: x label, set result box height to data length.
 
 ## v0.4.3
-- Added 3Djs Visualization for entity analysis results.
+- Added D3js Visualization for entity analysis results.
 
 ## v0.4.2
 - Added Pie chart for visualization with D3js library from sentences.
