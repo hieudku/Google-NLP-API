@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import './SyntacticAnalysis.css';
 
 const SyntacticAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -19,17 +20,18 @@ const SyntacticAnalysis: React.FC = () => {
         try {
             const response = await axios.get(
                 'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeSyntax',
-                { params: { text: inputText }}
+                { params:{text: inputText}}
             );
             setTokens(response.data.tokens);
-        }
+        } 
         catch (error) {
             setError('Error while analyzing syntax. Please try again.');
-        }
+        } 
         finally {
             setLoading(false);
         }
     };
+
     return (
         <div className="dashboard">
             <h2>Syntactic Analysis</h2>
@@ -46,19 +48,19 @@ const SyntacticAnalysis: React.FC = () => {
             {error && <p className="error-message">{error}</p>}
 
             {tokens && (
-                <div className="results-section">
+                <div className="syntactic-analysis-results">
                     <h3>Syntactic Analysis Results</h3>
-                    <ul>
+                    <div>
                         {tokens.map((token, index) => (
-                            <li key={index}>
-                                <br />
-                                <strong>Text:</strong> {token.text} <br />
-                                <strong>Part of Speech:</strong> {token.partOfSpeech} <br />
-                                <strong>Dependency:</strong> {token.dependencyEdge}
-                                <br />
-                            </li>
+                            <span
+                                key={index}
+                                className="token"
+                                data-tooltip={`Part of Speech: ${token.partOfSpeech}, Dependency: ${token.dependencyEdge}`}
+                            >
+                                {token.text}{' '}
+                            </span>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             )}
         </div>
