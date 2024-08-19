@@ -1,3 +1,6 @@
+## v0.4.6
+- Added Syntax Visualization to syntactic analysis.
+
 ## v0.4.5
 - Fixed: Text overlap result sections, added category for each text.
 
@@ -5,6 +8,7 @@
 - Fixed: x label, set result box height to data length.
 
 ## v0.4.3
+- Added 3Djs Visualization for entity analysis results.
 
 ## v0.4.2
 - Added Pie chart for visualization with D3js library from sentences.
