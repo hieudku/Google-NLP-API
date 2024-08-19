@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
-import './SyntacticAnalysis.css';
 
 const SyntacticAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
