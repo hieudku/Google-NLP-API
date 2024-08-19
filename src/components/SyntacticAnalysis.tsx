@@ -31,6 +31,20 @@ const SyntacticAnalysis: React.FC = () => {
             setLoading(false);
         }
     };
+    // Set colours based on types of word
+    const getColorForPartOfSpeech = (partOfSpeech: string) => {
+        switch (partOfSpeech) {
+            case 'NOUN': return '#4CAF50'; // Green
+            case 'VERB': return '#2196F3'; // Blue
+            case 'ADJ': return '#FFEB3B'; // Yellow
+            case 'ADP': return '#FF9800'; // Orange
+            case 'PRON': return '#9C27B0'; // Purple
+            case 'CONJ': return '#E91E63'; // Pink
+            case 'PUNCT': return '#607D8B'; // Gray
+            case 'NUM': return '#00BCD4'; // Cyan
+            default: return '#000'; // Black - other
+        }
+    };
 
     return (
         <div className="dashboard">
@@ -53,12 +67,13 @@ const SyntacticAnalysis: React.FC = () => {
                     <div>
                         {tokens.map((token, index) => (
                             <span
-                                key={index}
-                                className="token"
-                                data-tooltip={`Part of Speech: ${token.partOfSpeech}, Dependency: ${token.dependencyEdge}`}
-                            >
-                                {token.text}{' '}
-                            </span>
+                            key={index}
+                            className="token"
+                            style={{ backgroundColor: getColorForPartOfSpeech(token.partOfSpeech) }}
+                            data-tooltip={`Part of Speech: ${token.partOfSpeech}, Dependency: ${token.dependencyEdge}`}
+                        >
+                            {token.text}{' '}
+                        </span>
                         ))}
                     </div>
                 </div>
