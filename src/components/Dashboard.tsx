@@ -3,9 +3,10 @@ import './Dashboard.css';
 import SentimentAnalysis from './SentimentAnalysis';
 import EntityAnalysis from './EntityAnalysis';
 import SyntacticAnalysis from './SyntacticAnalysis';
+import EntitySentimentAnalysis from './EntitySentimentAnalysis';
 
 const Dashboard: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'sentiment' | 'entities' | 'syntax'>('sentiment');
+    const [activeTab, setActiveTab] = useState<'sentiment' | 'entities' | 'syntax' | 'entitiesSentiment'>('sentiment');
 
     return (
         <div className="dashboard">
@@ -20,11 +21,15 @@ const Dashboard: React.FC = () => {
                 <button onClick={() => setActiveTab('syntax')} className={activeTab === 'syntax' ? 'active' : ''}>
                     Syntactic Analysis
                 </button>
+                <button onClick={() => setActiveTab('entitiesSentiment')} className={activeTab === 'entitiesSentiment' ? 'active' : ''}>
+                    EntitySentiment
+                </button>
             </div>
             <div className="tab-content">
                 {activeTab === 'sentiment' && <SentimentAnalysis />}
                 {activeTab === 'entities' && <EntityAnalysis />}
                 {activeTab === 'syntax' && <SyntacticAnalysis />}
+                {activeTab === 'entitiesSentiment' && <EntitySentimentAnalysis />}
             </div>
         </div>
     );

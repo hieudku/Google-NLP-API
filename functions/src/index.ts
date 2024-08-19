@@ -128,3 +128,41 @@ export const analyzeSyntax = functions.https.onRequest(
     });
   }
 );
+
+// Entity sentiment analysis
+export const analyzeEntitySentiment = functions.https.onRequest(
+  async (req: Request, res: Response) => {
+    corsHandler(req, res, async () => {
+      const text = req.query.text as string;
+
+      if (!text) {
+        res.status(400).send("Text is required");
+        return;
+      }
+
+      try {
+        const [result] = await client.analyzeEntitySentiment({
+          document: {
+            content: text,
+            type: "PLAIN_TEXT",
+          },
+        });
+
+        const entities = result.entities?.map((entity) => ({
+          name: entity.name,
+          type: entity.type,
+          salience: entity.salience,
+          sentiment: {
+            score: entity.sentiment?.score,
+            magnitude: entity.sentiment?.magnitude,
+          },
+        }));
+
+        res.json({entities});
+      } catch (error) {
+        console.error("Error analyzing entity sentiment:", error);
+        res.status(500).send("Error analyzing entity sentiment");
+      }
+    });
+  }
+);
