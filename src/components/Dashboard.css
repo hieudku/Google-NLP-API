@@ -198,28 +198,58 @@ ul {
 }
 
 /* Entity Sentiment Table*/
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 20px;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
+    margin: 20px 0;
+    font-size: 16px;
     text-align: left;
 }
 
-th {
-    background-color: #f4f4f4;
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+table thead {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Responsive table */
+@media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    table tr {
+        margin: 0 0 1rem 0;
+        border: 1px solid #ddd;
+    }
+
+    table td {
+        border: none;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+
+    table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
 }
