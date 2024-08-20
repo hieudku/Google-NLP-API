@@ -1,4 +1,5 @@
 import React from 'react';
+import * as XLSX from 'xlsx';
 
 interface EntityDatum {
     name: string;
@@ -13,7 +14,25 @@ interface EntitySentimentTableProps {
 }
 
 const EntitySentimentTable: React.FC<{ data: any[] }> = ({ data }) => {
+
+    const exportToExcel = () => {
+        const worksheet = XLSX.utils.json_to_sheet(data.map(entity => ({
+            name: entity.name,
+            type: entity.type,
+            sentimentScore: entity.sentiment.score,
+            magnitude: entity.sentiment.magnitude,
+            salience: entity.salience,
+        })));
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Entity Sentiment Analysis');
+        XLSX.writeFile(workbook, 'entity_sentiment_analysis.xlsx');
+    };
+
     return (
+        <div>
+        <div className="export-buttons">
+                <button onClick={exportToExcel}>Export to Excel</button>
+            </div>
         <table>
             <thead>
                 <tr>
@@ -40,6 +59,7 @@ const EntitySentimentTable: React.FC<{ data: any[] }> = ({ data }) => {
                 ))}
             </tbody>
         </table>
+        </div>
     );
 };
 

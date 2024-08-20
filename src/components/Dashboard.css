@@ -253,3 +253,14 @@ table thead {
         text-align: left;
     }
 }
+
+/*Export*/
+.export-buttons {
+    margin-bottom: 10px;
+}
+
+.export-buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
