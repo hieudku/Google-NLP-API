@@ -1,7 +1,7 @@
+## v0.5.1
+- Added Table for entity sentiment results.
+
 # v0.5.0
-## Date: 20 Aug 2024
-https://automatedcontenthub-hc.web.app/<br />
-## Additional Feature:
 - Entity Sentiment Analysis: Analyzing the sentiment by each entity identified.
 <br />
 
@@ -32,15 +32,12 @@ https://automatedcontenthub-hc.web.app/<br />
 <br />
 
 # v0.4.0
-## Date: 18 Aug 2024
 ## Additional Features:
 - Syntactic Analysis: Analyzing the grammatical structure of a sentence to understand its syntax.
 <br />
 
 # v0.3.0
-## Date: 17 Aug 2024
 
-## Additional Features:
 - Entity Analysis: identification of key entities (e.g., names, organizations) within the text.
 
 - Analysis Dashboard Tabs: Switch between Sentiment analysis and Entity analysis functions.
@@ -48,10 +45,6 @@ https://automatedcontenthub-hc.web.app/<br />
 <br />
 
 # v0.2.0
-
-## Release Date: 16 Aug 2024
-
-## New Features:
 - News articles fetched to app using API, a few topics for now.
 
 - Google Natural Language API Integration for text analysis.
@@ -61,8 +54,6 @@ https://automatedcontenthub-hc.web.app/<br />
 <br />
 
 # v0.1.0
-
-## Features added:
 - Login & Register Authentication.
 - Login & Register Form.
 - Mobile responsive.
