@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import EntitySentimentTable from './EntitySentimentTable';
 
 const EntitySentimentAnalysis: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -46,12 +47,16 @@ const EntitySentimentAnalysis: React.FC = () => {
             {error && <p>{error}</p>}
       {entities && (
         <div className="results-section">
+          <EntitySentimentTable data={entities} />
           <h3>Entities and Sentiments</h3>
           <ul>
             {entities.map((entity, index) => (
               <li key={index}>
-                <strong>{entity.name}</strong> ({entity.type}) - Sentiment Score: {entity.sentiment.score}, Magnitude: {entity.sentiment.magnitude}
-              </li>
+              <strong>{entity.name}</strong> ({entity.type}) - Sentiment Score: 
+              {entity.sentiment ? entity.sentiment.score.toFixed(2) : 'N/A'}, 
+              Magnitude: 
+              {entity.sentiment ? entity.sentiment.magnitude.toFixed(2) : 'N/A'}
+          </li>
             ))}
           </ul>
         </div>
