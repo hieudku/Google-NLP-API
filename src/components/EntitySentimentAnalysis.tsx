@@ -22,6 +22,7 @@ const EntitySentimentAnalysis: React.FC = () => {
             {params: {text: inputText} }
             );
             setEntities(response.data.entities);
+            console.log('Entities:', entities);
         }
         catch (error) {
             setError('Error analyzing, please try again.');
