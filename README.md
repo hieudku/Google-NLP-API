@@ -1,3 +1,6 @@
+## v0.5.2
+- Added export EntitySentiment Table to Excel
+
 ## v0.5.1
 - Added Table for entity sentiment results.
 
