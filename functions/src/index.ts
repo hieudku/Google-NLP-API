@@ -166,3 +166,56 @@ export const analyzeEntitySentiment = functions.https.onRequest(
     });
   }
 );
+
+export const analyzeSentencesWithSalience = functions.https.onRequest(
+  async (req: Request, res: Response) => {
+    corsHandler(req, res, async () => {
+      const text = req.query.text as string;
+
+      if (!text) {
+        res.status(400).send("Text is required");
+        return;
+      }
+
+      try {
+        // Perform both sentiment and entity analysis
+        const [sentimentResult] = await client.analyzeSentiment({
+          document: {
+            content: text,
+            type: "PLAIN_TEXT",
+          },
+          encodingType: "UTF8",
+        });
+
+        const [entityResult] = await client.analyzeEntities({
+          document: {
+            content: text,
+            type: "PLAIN_TEXT",
+          },
+        });
+
+        const sentences = sentimentResult.sentences?.map((sentence) => {
+          const sentenceEntities = entityResult.entities?.filter((entity) =>
+            sentence.text?.content?.includes(entity.name || "")
+          );
+
+          const aggregatedSalience = sentenceEntities?.reduce((acc, entity) => {
+            return acc + (entity.salience || 0);
+          }, 0);
+
+          return {
+            text: sentence.text?.content,
+            sentiment: sentence.sentiment?.score,
+            magnitude: sentence.sentiment?.magnitude,
+            aggregatedSalience: aggregatedSalience || 0,
+          };
+        });
+
+        res.json({sentences: sentences || []});
+      } catch (error) {
+        console.error("Error analyzing text:", error);
+        res.status(500).send("Error analyzing text");
+      }
+    });
+  }
+);
