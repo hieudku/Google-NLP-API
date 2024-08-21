@@ -79,10 +79,10 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
                         <tbody>
                             {sentences.map((sentence, index) => (
                                 <tr key={index}>
-                                    <td>{sentence.text}</td>
-                                    <td>{sentence.sentiment !== undefined ? sentence.sentiment.toFixed(2) : 'N/A'}</td>
-                                    <td>{sentence.magnitude !== undefined ? sentence.magnitude.toFixed(2) : 'N/A'}</td>
-                                    <td>{sentence.aggregatedSalience !== undefined ? sentence.aggregatedSalience.toFixed(2) : 'N/A'}</td>
+                                    <td data-label="Sentence">{sentence.text}</td>
+                                    <td data-label="Sentiment">{sentence.sentiment !== undefined ? sentence.sentiment.toFixed(2) : 'N/A'}</td>
+                                    <td data-label="Magnitude">{sentence.magnitude !== undefined ? sentence.magnitude.toFixed(2) : 'N/A'}</td>
+                                    <td data-label="Salience">{sentence.aggregatedSalience !== undefined ? sentence.aggregatedSalience.toFixed(2) : 'N/A'}</td>
                                 </tr>
                             ))}
                         </tbody>
