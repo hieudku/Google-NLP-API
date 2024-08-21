@@ -1,5 +1,11 @@
+## v0.5.4
+- Added exporting to spreadsheet for sentence analysis.
+  
+## v0.5.3
+- Added sentence analysis with aggregated salience score.
+
 ## v0.5.2
-- Added export EntitySentiment Table to Excel
+- Added exporting EntitySentiment Table to Excel.
 
 ## v0.5.1
 - Added Table for entity sentiment results.
@@ -9,7 +15,7 @@
 <br />
 
 ## v0.4.8
-- Added explaination for text dependency
+- Added explaination for text dependency.
 
 ## v0.4.7
 - Added legend for part of speech.
