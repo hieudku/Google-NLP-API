@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import * as XLSX from 'xlsx';
 
 const EntitySentimentAnalysisSentences: React.FC = () => {
     const [inputText, setInputText] = useState('');
@@ -28,7 +29,20 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
             setLoading(false);
         }
     };
+    const exportToExcel = () => {
+        if (!sentences) return;
 
+        const worksheet = XLSX.utils.json_to_sheet(sentences.map(sentence => ({
+            Sentence: sentence.text,
+            'Sentiment Score': sentence.sentiment !== undefined ? sentence.sentiment.toFixed(2) : 'N/A',
+            Magnitude: sentence.magnitude !== undefined ? sentence.magnitude.toFixed(2) : 'N/A',
+            'Aggregated Salience': sentence.aggregatedSalience !== undefined ? sentence.aggregatedSalience.toFixed(2) : 'N/A'
+        })));
+
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sentiment Analysis');
+        XLSX.writeFile(workbook, 'sentiment_analysis.xlsx');
+    };
     return (
         <div className="dashboard">
             <h2>Sentence Sentiment Analysis with Aggregated Salience</h2>
@@ -49,6 +63,9 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
             {error && <p>{error}</p>}
             {sentences && (
                 <div className="results-section">
+                    <div className="export-buttons">
+                <button onClick={exportToExcel}>Export to Excel</button>
+            </div>
                     <h3>Analysis Results</h3>
                     <table className="results-table">
                         <thead>
