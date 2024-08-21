@@ -20,7 +20,7 @@ const Feed: React.FC = () => {
     const [articles, setArticles] = useState<Article[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const [category, setCategory] = useState<string>('sport');
+    const [category, setCategory] = useState<string>('general');
     const [country, setCountry] = useState<string>('nz');
 
     useEffect(() => {
