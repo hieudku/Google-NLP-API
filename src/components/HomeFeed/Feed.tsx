@@ -21,6 +21,7 @@ const Feed: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [category, setCategory] = useState<string>('sport');
+    const [country, setCountry] = useState<string>('nz');
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -29,8 +30,8 @@ const Feed: React.FC = () => {
             try {
                 // Fetch from Newsdata.io using the query parameter
                 const response = await fetch(
-                    `https://newsdata.io/api/1/news?apikey=pub_5100186ae261d664f8c231053c716124723c0&q=${category}&language=en`
-                );
+                    `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&q=${category}&country=${country}&language=en`
+                );console.log(category+ '-'+country);
                 const data = await response.json();
 
                 if (data.status === 'success') {
@@ -54,9 +55,8 @@ const Feed: React.FC = () => {
                 setLoading(false);
             }
         };
-
         fetchNews();
-    }, [category]);
+    }, [category, country]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -69,7 +69,17 @@ const Feed: React.FC = () => {
     return (
         <div>
             <h1 className="title">News Feed</h1>
+            <div className="controls">
+                <select value={country} onChange={(e) => setCountry(e.target.value)}>
+                    <option value="nz">New Zealand</option>
+                    <option value="au">Australia</option>
+                    <option value="us">United States</option>
+                </select>
+            </div>
             <ul className="menu">
+                <li className={category === 'genenal' ? 'active' : 'inactive'} onClick={() => setCategory('general')}>
+                    General
+                </li>
                 <li className={category === 'sport' ? 'active' : 'inactive'} onClick={() => setCategory('sport')}>
                     Sport
                 </li>

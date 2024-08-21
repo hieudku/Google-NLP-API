@@ -208,3 +208,45 @@ body {
         height: 120px;
     }
 }
+/* select & search*/
+/* Select dropdown styling */
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+.controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.controls select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0px 10px;
+    }
+
+    .controls select, .controls button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .controls button {
+        margin-bottom: 0;
+    }
+}
