@@ -1,5 +1,7 @@
 import React from 'react';
 import * as XLSX from 'xlsx';
+import Button from '@mui/material/Button';
+import { FaFileExcel } from 'react-icons/fa';
 
 interface EntityDatum {
     name: string;
@@ -31,8 +33,13 @@ const EntitySentimentTable: React.FC<{ data: any[] }> = ({ data }) => {
     return (
         <div>
         <div className="export-buttons">
-                <button onClick={exportToExcel}>Export to Excel</button>
-            </div>
+            <Button
+                variant="contained" 
+                color="primary" 
+                onClick={exportToExcel}
+                startIcon={<FaFileExcel />}>Export to Excel
+            </Button>
+        </div>
         <table>
             <thead>
                 <tr>

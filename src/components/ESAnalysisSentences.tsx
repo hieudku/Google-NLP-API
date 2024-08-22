@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 
 const EntitySentimentAnalysisSentences: React.FC = () => {
@@ -64,8 +68,13 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
             {sentences && (
                 <div className="results-section">
                     <div className="export-buttons">
-                <button onClick={exportToExcel}>Export to Excel</button>
-            </div>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            onClick={exportToExcel}
+                            startIcon={<FaFileExcel />}>Export to Excel
+                        </Button>
+                    </div>
                     <h3>Analysis Results</h3>
                     <table className="results-table">
                         <thead>
