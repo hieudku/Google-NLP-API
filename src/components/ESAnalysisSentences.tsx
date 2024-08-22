@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Dashboard.css';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import LinearProgress from '@mui/material/LinearProgress';
 import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 
@@ -63,7 +63,7 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
             >
                 {loading ? 'Analyzing...' : 'Analyze'}
             </button>
-
+            
             {error && <p>{error}</p>}
             {sentences && (
                 <div className="results-section">
