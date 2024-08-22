@@ -6,7 +6,7 @@ const AboutThisApp: React.FC = () => {
         <div className="misc-text">
             <h3>Hi there!</h3>
             <ul>
-                <li>User data will be encrypted and securely stored on Firebase by google standard. I will access, manage user accounts, or gather any personal information.</li>
+                <li>User data will be encrypted and securely stored on Firebase by google standard. I will not access, manage user accounts, or gather any personal information.</li>
                 <li>I am a student, and this project is a part of my practice in creating full-stack applications. It is not intended for commercial use in any ways.</li>
             </ul>
         </div>
