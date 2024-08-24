@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from './components/Button/Button';
@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import ContactMe from './components/Misc/Contact';
 import AboutThisApp from './components/Misc/About';
 import axios from 'axios';
+import {usePageTracking} from './firebase';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
@@ -26,6 +27,9 @@ const AppTest:React.FC = () => {
 */
 
 function App() {
+  useEffect(() => {
+    usePageTracking();
+  }, [location.pathname]);
   return (
     <Router>
     <div className="App">
