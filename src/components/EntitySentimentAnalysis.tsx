@@ -45,7 +45,7 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for entity sentiment analysis"
-                rows={10}
+                rows={15}
             />
             <div className="textBox-buttons">
               <button className="dashboard-button" onClick={analyzeEntitySentiment} disabled={loading}>
@@ -53,6 +53,7 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
               </button>
               <Button 
                   className="dashboard-button"
+                  onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>

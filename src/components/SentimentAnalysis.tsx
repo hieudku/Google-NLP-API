@@ -96,7 +96,7 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     value={text}
                     onChange={onChange}
                     placeholder="Enter text for sentiment analysis"
-                    rows={10}
+                    rows={15}
                 />
                 <div className="textBox-buttons">
                     <button className="dashboard-button" onClick={analyzeText} disabled={loading}>
@@ -104,6 +104,7 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     </button>
                     <Button 
                         className="dashboard-button"
+                        onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                         startIcon={<ClearIcon />}>Clear
                     </Button>
                 </div>
@@ -116,6 +117,8 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                     <div className="results-section">
                     <SentimentExplanation />
+                    <br />
+                    <br />
                 <h3>Sentiment Distribution Chart</h3><br />
                 <SentimentPieChart data={calculateSentimentDistribution()}/>
                 </div>

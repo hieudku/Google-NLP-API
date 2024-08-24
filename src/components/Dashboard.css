@@ -29,6 +29,7 @@ textarea, input[type="text"] {
 .textBox-buttons {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 .dashboard-button {
     padding: 10px 20px;

@@ -59,7 +59,7 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for analysis"
-                rows={10}
+                rows={15}
             />
             <div className="textBox-buttons">
                 <button
@@ -71,6 +71,7 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                 </button>
                 <Button 
                   className="dashboard-button"
+                  onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>

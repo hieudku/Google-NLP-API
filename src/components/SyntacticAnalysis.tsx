@@ -86,7 +86,7 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for syntactic analysis"
-                rows={10}
+                rows={15}
             />
             <div className="textBox-buttons">
                 <button className="dashboard-button" onClick={analyzeSyntax} disabled={loading}>
@@ -94,6 +94,7 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
                 </button>
                 <Button 
                   className="dashboard-button"
+                  onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>

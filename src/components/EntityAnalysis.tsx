@@ -44,7 +44,7 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for entity analysis"
-                rows={10}
+                rows={15}
             />
             <div className="textBox-buttons">
                 <button className="dashboard-button" onClick={analyzeEntities} disabled={loading}>
@@ -52,6 +52,7 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                 </button>
                 <Button 
                     className="dashboard-button"
+                    onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                     startIcon={<ClearIcon />}>Clear
                 </Button>
             </div>
