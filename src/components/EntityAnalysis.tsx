@@ -10,7 +10,6 @@ interface EntityAnalysisProps {
 }
 
 const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
-    const [inputText, setInputText] = useState('');
     const [entities, setEntities] = useState<{ name:string, type: string, salience: number} [] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
