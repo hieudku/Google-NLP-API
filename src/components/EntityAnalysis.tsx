@@ -4,14 +4,19 @@ import './EntityAnalysis.css';
 import './Dashboard.css';
 import EntityVisualization from "./EntityVisualization";
 
-const EntityAnalysis: React.FC = () => {
+interface EntityAnalysisProps {
+    text: string;
+    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
     const [inputText, setInputText] = useState('');
     const [entities, setEntities] = useState<{ name:string, type: string, salience: number} [] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const analyzeEntities = async () => {
-        if (!inputText) {
+        if (!text) {
             setError('Please enter text.');
             return;
         }
@@ -21,7 +26,7 @@ const EntityAnalysis: React.FC = () => {
         try {
             const response = await axios.get(
                 'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeEntities',
-                { params: {text: inputText}}
+                { params: {text: text}}
             );
             setEntities(response.data.entities);
         } catch (error) {
@@ -35,7 +40,7 @@ const EntityAnalysis: React.FC = () => {
         <div className="dashboard">
             <h2>Entity Analysis</h2>
             <textarea
-                value={inputText}
+                value={text}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Enter text for entity analysis"
                 rows={5}
