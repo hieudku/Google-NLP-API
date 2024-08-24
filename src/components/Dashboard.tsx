@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
                 {activeTab === 'sentiment' && <SentimentAnalysis text={text} onChange={keepTextChange}/>}
                 {activeTab === 'entities' && <EntityAnalysis text={text} onChange={keepTextChange}/>}
                 {activeTab === 'syntax' && <SyntacticAnalysis />}
-                {activeTab === 'entitiesSentiment' && <EntitySentimentAnalysis />}
+                {activeTab === 'entitiesSentiment' && <EntitySentimentAnalysis text={text} onChange={keepTextChange}/>}
                 {activeTab === 'entitiesSentimentSentence' && <EntitySentimentAnalysisSentences />}
             </div>
         </div>

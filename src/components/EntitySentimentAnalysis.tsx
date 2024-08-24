@@ -3,14 +3,18 @@ import axios from 'axios';
 import './Dashboard.css';
 import EntitySentimentTable from './EntitySentimentTable';
 
-const EntitySentimentAnalysis: React.FC = () => {
-    const [inputText, setInputText] = useState('');
+interface EntitySentimentAnalysisProps {
+  text: string;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, onChange}) => {
     const [entities, setEntities] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const analyzeEntitySentiment = async () => {
-        if (!inputText) {
+        if (!text) {
             setError('Please enter text.');
             return;
         }
@@ -19,7 +23,7 @@ const EntitySentimentAnalysis: React.FC = () => {
 
         try {
             const response = await axios.get('https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeEntitySentiment',
-            {params: {text: inputText} }
+            {params: {text: text} }
             );
             setEntities(response.data.entities);
             console.log('Entities:', entities);
@@ -36,8 +40,8 @@ const EntitySentimentAnalysis: React.FC = () => {
         <div className="dashboard">
             <h2>Entity Sentiment Analysis</h2>
             <textarea
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                value={text}
+                onChange={onChange}
                 placeholder="Enter text for entity sentiment analysis"
                 rows={5}
             />
