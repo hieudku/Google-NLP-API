@@ -45,7 +45,7 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                 rows={5}
             />
             <button className="dashboard-button" onClick={analyzeEntities} disabled={loading}>
-                {loading ? 'Analyzing...': 'Analyze Entities'}
+                {loading ? 'Analyzing...': 'Analyze'}
             </button>
 
             {error && <p className="error-message">{error}</p>}

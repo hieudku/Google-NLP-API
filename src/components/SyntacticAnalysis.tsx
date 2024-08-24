@@ -88,7 +88,7 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
                 rows={5}
             />
             <button className="dashboard-button" onClick={analyzeSyntax} disabled={loading}>
-                {loading ? 'Analyzing...' : 'Analyze Syntax'}
+                {loading ? 'Analyzing...' : 'Analyze'}
             </button>
 
             {error && <p className="error-message">{error}</p>}

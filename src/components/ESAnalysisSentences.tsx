@@ -13,7 +13,6 @@ interface SentencesAnalysisProps {
 }
 
 const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({text, onChange}) => {
-    const [inputText, setInputText] = useState('');
     const [sentences, setSentences] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);

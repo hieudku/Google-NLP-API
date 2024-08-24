@@ -68,7 +68,7 @@ const Feed: React.FC = () => {
 
     return (
         <div>
-            <h1 className="title">News Feed</h1>
+            <h1 className="title">Latest News</h1>
             <div className="controls">
                 <select value={country} onChange={(e) => setCountry(e.target.value)}>
                     <option value="nz">New Zealand</option>

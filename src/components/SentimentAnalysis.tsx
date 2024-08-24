@@ -17,7 +17,6 @@ interface SentimentAnalysisProps {
 }
 
 const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) => {
-    const [inputUrl, setInputUrl] = useState('');
     const [sentiment, setSentiment] = useState<{ score: number, magnitude: number } | null>(null);
     const [sentences, setSentences] = useState<SentenceSentiment[]>([]);
     const [loading, setLoading] = useState(false);
@@ -81,11 +80,6 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
             setLoading(false);
         }
     };
-
-    const analyzeUrl = async () => {
-        setError('URL analysis is not implemented yet.');
-    };
-
     const getColour = (score: number) => {
         if (score > 0.2) return 'green';
         if (score < -0.2) return 'red';
@@ -103,36 +97,21 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     rows={5}
                 />
                 <button className="dashboard-button" onClick={analyzeText} disabled={loading}>
-                    {loading ? 'Analyzing...' : 'Analyze Text'}
+                    {loading ? 'Analyzing...' : 'Analyze'}
                 </button>
             </div>
-
-            <div className="input-section">
-                <p>Analyze URL</p>
-                <input
-                    type="text"
-                    value={inputUrl}
-                    onChange={(e) => setInputUrl(e.target.value)}
-                    placeholder="Enter URL to analyze"
-                />
-                <button className="dashboard-button" onClick={analyzeUrl} disabled={loading}>
-                    {loading ? 'Analyzing...' : 'Analyze URL'}
-                </button>
-            </div>
-
             {error && <p className="error-message">{error}</p>}
-            <SentimentExplanation />
             {sentiment && (
                 <div className="results-section" style={{ color: getColour(sentiment.score) }}>
                     <h3>Overall Sentiment Analysis Results</h3>
                     <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                     <div className="results-section">
+                    <SentimentExplanation />
                 <h3>Sentiment Distribution Chart</h3><br />
                 <SentimentPieChart data={calculateSentimentDistribution()}/>
                 </div>
                 </div>
-                
             )}
                 
             {sentences.length > 0 && (
