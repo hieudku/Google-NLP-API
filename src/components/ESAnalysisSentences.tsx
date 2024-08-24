@@ -7,14 +7,19 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 
-const EntitySentimentAnalysisSentences: React.FC = () => {
+interface SentencesAnalysisProps {
+    text: string;
+    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({text, onChange}) => {
     const [inputText, setInputText] = useState('');
     const [sentences, setSentences] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const analyzeSentencesWithSalience = async () => {
-        if (!inputText) {
+        if (!text) {
             setError('Please enter text.');
             return;
         }
@@ -24,7 +29,7 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
         try {
             const response = await axios.get(
                 'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeSentencesWithSalience',
-                { params: { text: inputText } }
+                { params: { text: text } }
             );
             setSentences(response.data.sentences);
         } catch (error) {
@@ -51,8 +56,8 @@ const EntitySentimentAnalysisSentences: React.FC = () => {
         <div className="dashboard">
             <h2>Sentence Sentiment Analysis with Aggregated Salience</h2>
             <textarea
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                value={text}
+                onChange={onChange}
                 placeholder="Enter text for analysis"
                 rows={5}
             />
