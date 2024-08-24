@@ -36,7 +36,6 @@ function App() {
           element={
             <div>
           {<Dashboard />}
-        {<Feed />} 
             </div>
           }
           />
@@ -44,6 +43,7 @@ function App() {
         <Route path="/register" element={<Register />}/>
         <Route path="/contact" element={<ContactMe />} />
         <Route path="/about" element={<AboutThisApp />} />
+        <Route path="/sources" element={<Feed />} />
       </Routes>
     </div>
     </Router>

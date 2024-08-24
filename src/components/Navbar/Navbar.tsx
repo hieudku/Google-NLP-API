@@ -44,7 +44,7 @@ const Navbar:React.FC = () => {
                 </svg>
             </button>
 
-            <div className="navbar-brand">v0.5.4</div>
+            <div className="navbar-brand">v0.5.5</div>
 
             <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>
                 <a className= "navbar-link" href="/login">Login</a>
@@ -52,6 +52,7 @@ const Navbar:React.FC = () => {
                 <br />
                 <br />
                 <a className= "navbar-link" href="/">Home</a>
+                <a className= "navbar-link" href="/sources">Sources</a>
                 <a className= "navbar-link" href="/about">About</a>
                 <a className= "navbar-link" href="/contact">Contact</a>
                 
