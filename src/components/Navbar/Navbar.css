@@ -16,7 +16,7 @@ body {
 
 .navbar-menu.open { display: flex; }
 
-@media (min-width: 720px) { 
+@media (min-width: 780px) { 
     .navbar-menu { display: flex; flex-direction: row;}
 
     .navbar-toggle { display: none;}
@@ -69,7 +69,7 @@ body {
   .navbar-panel a:hover {color: #0443f1;}
   
   /* Hide the burger icon on larger screens */
-  @media (min-width: 720px) {
+  @media (min-width: 780px) {
     .navbar-toggle {display: none;}
 
     .navbar-panel {    
