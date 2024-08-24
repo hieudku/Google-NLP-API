@@ -16,7 +16,7 @@ body {
 
 .navbar-menu.open { display: flex; }
 
-@media (min-width: 600px) { 
+@media (min-width: 720px) { 
     .navbar-menu { display: flex; flex-direction: row;}
 
     .navbar-toggle { display: none;}
@@ -35,7 +35,7 @@ body {
     color: #252525;
     display: flex;
     flex-direction: column;
-    padding-top: 50px; 
+    padding-top: 40px; 
     transform: translateX(-100%); 
     transition: transform 0.3s ease;
     z-index: 1;
@@ -45,13 +45,33 @@ body {
   
   .navbar-panel a {padding: 15px; text-decoration: none; color: #252525; width: auto; padding-left: 60px;
   }
-  
+
+  img {
+    width: 55px;
+    height: auto;
+    margin-left: 55px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #2b384d;
+    padding: 5px 10px;
+    color: #f1f1f1;
+  }
+
+  .navbar-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
   .navbar-panel a:hover {color: #0443f1;}
   
   /* Hide the burger icon on larger screens */
-  @media (min-width: 600px) {
+  @media (min-width: 720px) {
     .navbar-toggle {display: none;}
-  
+
     .navbar-panel {    
         position: static;
         transform: none;
