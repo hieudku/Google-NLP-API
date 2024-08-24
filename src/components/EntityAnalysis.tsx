@@ -41,7 +41,7 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
             <h2>Entity Analysis</h2>
             <textarea
                 value={text}
-                onChange={(e) => setInputText(e.target.value)}
+                onChange={onChange}
                 placeholder="Enter text for entity analysis"
                 rows={5}
             />
