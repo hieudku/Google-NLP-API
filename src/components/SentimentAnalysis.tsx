@@ -11,8 +11,12 @@ interface SentenceSentiment {
     category: 'positive' | 'neutral' | 'negative';
 }
 
-const SentimentAnalysis: React.FC = () => {
-    const [inputText, setInputText] = useState('');
+interface SentimentAnalysisProps {
+    text: string;
+    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) => {
     const [inputUrl, setInputUrl] = useState('');
     const [sentiment, setSentiment] = useState<{ score: number, magnitude: number } | null>(null);
     const [sentences, setSentences] = useState<SentenceSentiment[]>([]);
@@ -38,7 +42,7 @@ const SentimentAnalysis: React.FC = () => {
     };
 
     const analyzeText = async () => {
-        if (!inputText) {
+        if (!text) {
             setError('Please enter some text for analysis.');
             return;
         }
@@ -48,7 +52,7 @@ const SentimentAnalysis: React.FC = () => {
         try {
             const response = await axios.get(
                 'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeText', 
-                { params: { text: inputText } }
+                { params: { text: text } }
             );
 
             const sentimentData = response.data.sentences.map((sentence: any, index: number) => {
@@ -93,8 +97,8 @@ const SentimentAnalysis: React.FC = () => {
             <h2>Sentiment Analysis</h2>
             <div className="input-section">
                 <textarea
-                    value={inputText}
-                    onChange={(e) => setInputText(e.target.value)}
+                    value={text}
+                    onChange={onChange}
                     placeholder="Enter text for sentiment analysis"
                     rows={5}
                 />

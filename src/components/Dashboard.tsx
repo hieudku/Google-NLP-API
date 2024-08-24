@@ -8,8 +8,11 @@ import EntitySentimentAnalysisSentences from './ESAnalysisSentences';
 import Button from '@mui/material/Button';
 
 const Dashboard: React.FC = () => {
+    const [text, setText] = useState<string>('');
     const [activeTab, setActiveTab] = useState<'sentiment' | 'entities' | 'syntax' | 'entitiesSentiment' | 'entitiesSentimentSentence'>('sentiment');
-
+    const keepTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setText(event.target.value);
+    }
     return (
         <div className="dashboard">
             <h1 className="dashboard-title">Enter/paste text to analyze</h1>
@@ -30,8 +33,9 @@ const Dashboard: React.FC = () => {
                     Sentences Analysis
                 </Button>
             </div>
+            
             <div className="tab-content">
-                {activeTab === 'sentiment' && <SentimentAnalysis />}
+                {activeTab === 'sentiment' && <SentimentAnalysis text={text} onChange={keepTextChange}/>}
                 {activeTab === 'entities' && <EntityAnalysis />}
                 {activeTab === 'syntax' && <SyntacticAnalysis />}
                 {activeTab === 'entitiesSentiment' && <EntitySentimentAnalysis />}
