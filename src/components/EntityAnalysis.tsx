@@ -3,6 +3,8 @@ import axios from 'axios';
 import './EntityAnalysis.css';
 import './Dashboard.css';
 import EntityVisualization from "./EntityVisualization";
+import ClearIcon from '@mui/icons-material/Clear';
+import Button from '@mui/material/Button';
 
 interface EntityAnalysisProps {
     text: string;
@@ -42,11 +44,18 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for entity analysis"
-                rows={5}
+                rows={10}
             />
-            <button className="dashboard-button" onClick={analyzeEntities} disabled={loading}>
-                {loading ? 'Analyzing...': 'Analyze'}
-            </button>
+            <div className="textBox-buttons">
+                <button className="dashboard-button" onClick={analyzeEntities} disabled={loading}>
+                    {loading ? 'Analyzing...': 'Analyze'}
+                </button>
+                <Button 
+                    className="dashboard-button"
+                    startIcon={<ClearIcon />}>Clear
+                </Button>
+            </div>
+
 
             {error && <p className="error-message">{error}</p>}
             {entities && (

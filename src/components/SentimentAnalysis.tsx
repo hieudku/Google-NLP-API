@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Dashboard.css';
 import SentimentExplanation from './SentimentExplaination';
 import SentimentPieChart from './SentimentVisualization';
+import ClearIcon from '@mui/icons-material/Clear';
+import Button from '@mui/material/Button';
 
 interface SentenceSentiment {
     text: string;
@@ -94,11 +96,17 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     value={text}
                     onChange={onChange}
                     placeholder="Enter text for sentiment analysis"
-                    rows={5}
+                    rows={10}
                 />
-                <button className="dashboard-button" onClick={analyzeText} disabled={loading}>
-                    {loading ? 'Analyzing...' : 'Analyze'}
-                </button>
+                <div className="textBox-buttons">
+                    <button className="dashboard-button" onClick={analyzeText} disabled={loading}>
+                        {loading ? 'Analyzing...' : 'Analyze'}
+                    </button>
+                    <Button 
+                        className="dashboard-button"
+                        startIcon={<ClearIcon />}>Clear
+                    </Button>
+                </div>
             </div>
             {error && <p className="error-message">{error}</p>}
             {sentiment && (

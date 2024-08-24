@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
+import ClearIcon from '@mui/icons-material/Clear';
+import Button from '@mui/material/Button';
 
 interface SentencesAnalysisProps {
     text: string;
@@ -58,15 +59,21 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for analysis"
-                rows={5}
+                rows={10}
             />
-            <button
-                className="dashboard-button"
-                onClick={analyzeSentencesWithSalience}
-                disabled={loading}
-            >
-                {loading ? 'Analyzing...' : 'Analyze'}
-            </button>
+            <div className="textBox-buttons">
+                <button
+                    className="dashboard-button"
+                    onClick={analyzeSentencesWithSalience}
+                    disabled={loading}
+                >
+                    {loading ? 'Analyzing...' : 'Analyze'}
+                </button>
+                <Button 
+                  className="dashboard-button"
+                  startIcon={<ClearIcon />}>Clear
+              </Button>
+            </div>
             
             {error && <p>{error}</p>}
             {sentences && (

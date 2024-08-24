@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import './Dashboard.css';
 import EntitySentimentTable from './EntitySentimentTable';
+import ClearIcon from '@mui/icons-material/Clear';
+import Button from '@mui/material/Button';
 
 interface EntitySentimentAnalysisProps {
   text: string;
@@ -43,12 +45,17 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for entity sentiment analysis"
-                rows={5}
+                rows={10}
             />
-            <button className="dashboard-button" onClick={analyzeEntitySentiment} disabled={loading}>
-                {loading ? 'Analyzing...' : 'Analyze'}
-            </button>
-
+            <div className="textBox-buttons">
+              <button className="dashboard-button" onClick={analyzeEntitySentiment} disabled={loading}>
+                  {loading ? 'Analyzing...' : 'Analyze'}
+              </button>
+              <Button 
+                  className="dashboard-button"
+                  startIcon={<ClearIcon />}>Clear
+              </Button>
+            </div>
             {error && <p>{error}</p>}
       {entities && (
         <div className="results-section">

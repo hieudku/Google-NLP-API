@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import ClearIcon from '@mui/icons-material/Clear';
+import Button from '@mui/material/Button';
 
 interface SyntacticAnalysisProps {
     text: string;
@@ -8,7 +10,6 @@ interface SyntacticAnalysisProps {
 }
 
 const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) => {
-    const [inputText, setInputText] = useState('');
     const [tokens, setTokens] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -85,12 +86,17 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
                 value={text}
                 onChange={onChange}
                 placeholder="Enter text for syntactic analysis"
-                rows={5}
+                rows={10}
             />
-            <button className="dashboard-button" onClick={analyzeSyntax} disabled={loading}>
-                {loading ? 'Analyzing...' : 'Analyze'}
-            </button>
-
+            <div className="textBox-buttons">
+                <button className="dashboard-button" onClick={analyzeSyntax} disabled={loading}>
+                    {loading ? 'Analyzing...' : 'Analyze'}
+                </button>
+                <Button 
+                  className="dashboard-button"
+                  startIcon={<ClearIcon />}>Clear
+              </Button>
+            </div>
             {error && <p className="error-message">{error}</p>}
 
             {tokens && (
