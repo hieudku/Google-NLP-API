@@ -87,7 +87,7 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
         const worksheet = XLSX.utils.json_to_sheet(tokens.map(token => ({
             'Token': token.text !== undefined ? token.text : 'N/A',
             'PartOfSpeech': token.partOfSpeech !== undefined ? token.partOfSpeech : 'N/A',
-            'Dependency': token.dependencyExplanations !== undefined ? token.dependencyExplanations : 'N/A'
+            'Dependency': token.dependencyEdge !== undefined ? token.dependencyEdge : 'N/A'
         })));
 
         const workbook = XLSX.utils.book_new();
