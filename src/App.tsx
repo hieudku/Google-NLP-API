@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import ContactMe from './components/Misc/Contact';
 import AboutThisApp from './components/Misc/About';
 import axios from 'axios';
+import { trackPageVisit } from './firebase';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
@@ -26,6 +27,7 @@ const AppTest:React.FC = () => {
 */
 
 function App() {
+  trackPageVisit();
   return (
     <Router>
     <div className="App">
