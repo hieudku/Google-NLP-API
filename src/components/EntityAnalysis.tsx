@@ -49,8 +49,8 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
         })));
 
         const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Syntax Analysis');
-        XLSX.writeFile(workbook, 'syntactic_analysis.xlsx');
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Entities Analysis');
+        XLSX.writeFile(workbook, 'entity_analysis.xlsx');
     };
     return (
         <div className="dashboard">
