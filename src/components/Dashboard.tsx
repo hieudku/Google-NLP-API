@@ -33,7 +33,6 @@ const Dashboard: React.FC = () => {
                     Sentences Analysis
                 </Button>
             </div>
-            
             <div className="tab-content">
                 {activeTab === 'sentiment' && <SentimentAnalysis text={text} onChange={keepTextChange}/>}
                 {activeTab === 'entities' && <EntityAnalysis text={text} onChange={keepTextChange}/>}
@@ -41,6 +40,7 @@ const Dashboard: React.FC = () => {
                 {activeTab === 'entitiesSentiment' && <EntitySentimentAnalysis text={text} onChange={keepTextChange}/>}
                 {activeTab === 'entitiesSentimentSentence' && <EntitySentimentAnalysisSentences text={text} onChange={keepTextChange}/>}
             </div>
+            
         </div>
     );
 };

@@ -7,6 +7,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import * as XLSX from 'xlsx';
 import Button from '@mui/material/Button';
 import { FaFileExcel } from 'react-icons/fa';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 interface EntityAnalysisProps {
     text: string;
@@ -72,6 +74,9 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                 </Button>
             </div>
             
+            {loading && <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+              </Box>}
 
             {error && <p className="error-message">{error}</p>}
             {entities && (

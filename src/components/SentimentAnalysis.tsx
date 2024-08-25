@@ -5,6 +5,8 @@ import SentimentExplanation from './SentimentExplaination';
 import SentimentPieChart from './SentimentVisualization';
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 interface SentenceSentiment {
     text: string;
@@ -108,6 +110,9 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                         startIcon={<ClearIcon />}>Clear
                     </Button>
                 </div>
+                {loading && <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+              </Box>}
             </div>
             {error && <p className="error-message">{error}</p>}
             {sentiment && (

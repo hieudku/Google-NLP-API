@@ -75,7 +75,11 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>
-            
+
+            {loading && <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+              </Box>}
+              
             {error && <p>{error}</p>}
             {sentences && (
                 <div className="results-section">

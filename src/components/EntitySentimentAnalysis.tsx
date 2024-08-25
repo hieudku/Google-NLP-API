@@ -4,6 +4,8 @@ import './Dashboard.css';
 import EntitySentimentTable from './EntitySentimentTable';
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 interface EntitySentimentAnalysisProps {
   text: string;
@@ -47,16 +49,22 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
                 placeholder="Enter text for entity sentiment analysis"
                 rows={15}
             />
+
             <div className="textBox-buttons">
               <button className="dashboard-button" onClick={analyzeEntitySentiment} disabled={loading}>
                   {loading ? 'Analyzing...' : 'Analyze'}
               </button>
+
               <Button 
                   className="dashboard-button"
                   onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>
+            
+            {loading && <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+              </Box>}
             {error && <p>{error}</p>}
       {entities && (
         <div className="results-section">

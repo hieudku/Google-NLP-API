@@ -5,6 +5,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
 import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 interface SyntacticAnalysisProps {
     text: string;
@@ -113,6 +115,11 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>
+
+            {loading && <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+              </Box>}
+
             {error && <p className="error-message">{error}</p>}
 
             {tokens && (

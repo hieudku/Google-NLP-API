@@ -4,7 +4,10 @@
     margin: 0 auto;
     text-align:left;
 }
-
+.example-text-buttons {
+    margin-top: 50px;
+    text-align: center;
+}
 .input-section {
     margin-bottom: 20px;
 }
@@ -30,6 +33,7 @@ textarea, input[type="text"] {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 10px;
 }
 .dashboard-button {
     padding: 10px 20px;
