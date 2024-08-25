@@ -37,7 +37,7 @@ const Feed: React.FC = () => {
                 if (data.status === 'success') {
                     const formattedArticles = data.results.map((article: any) => ({
                         source: { id: null, name: article.source_id },
-                        author: article.creator ? article.creator.join(', ') : 'Unknown Author',
+                        author: article.creator || 'Unknown Author',
                         title: article.title,
                         description: article.description || 'No description available.',
                         url: article.link,
@@ -124,6 +124,7 @@ const Feed: React.FC = () => {
                             <img src={article.urlToImage || defaultImage} alt={article.title} />
                         </div>
                         <div className="article-content">
+                            <strong>{"Source: "+article.source.name}</strong>
                             <h2>{article.title}</h2>
                             <p>{article.description}</p>
                             <div className="article-source">

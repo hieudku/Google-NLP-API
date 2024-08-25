@@ -53,7 +53,7 @@ const Navbar:React.FC = () => {
             </div>
 
             <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>
-                <img src="/logo3.png" alt="App Logo" />
+                <img className="app-logo" src="/logo3.png" alt="App Logo" />
                 <br />
                 <br />
                 <a className= "navbar-link" href="/login">Login</a>
