@@ -4,7 +4,9 @@ import './EntityAnalysis.css';
 import './Dashboard.css';
 import EntityVisualization from "./EntityVisualization";
 import ClearIcon from '@mui/icons-material/Clear';
+import * as XLSX from 'xlsx';
 import Button from '@mui/material/Button';
+import { FaFileExcel } from 'react-icons/fa';
 
 interface EntityAnalysisProps {
     text: string;
@@ -37,6 +39,19 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
         }
     };
 
+    const exportToExcel = () => {
+        if (!text || !entities) return;
+
+        const worksheet = XLSX.utils.json_to_sheet(entities.map(entity => ({
+            'Entity': entity.name !== undefined ? entity.name : 'N/A',
+            'Type': entity.type !== undefined ? entity.type : 'N/A',
+            'Salience': entity.salience !== undefined ? entity.salience : 'N/A'
+        })));
+
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Syntax Analysis');
+        XLSX.writeFile(workbook, 'syntactic_analysis.xlsx');
+    };
     return (
         <div className="dashboard">
             <h2>Entity Analysis</h2>
@@ -56,11 +71,20 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                     startIcon={<ClearIcon />}>Clear
                 </Button>
             </div>
-
+            
 
             {error && <p className="error-message">{error}</p>}
             {entities && (
+                
                 <div className="results-section">
+                    <div className="export-buttons">
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            onClick={exportToExcel}
+                            startIcon={<FaFileExcel />}>Export to Excel
+                        </Button>
+                    </div>
                     <h3>Result notes:</h3>
                     <br />
                     <p><strong>Entity Analysis</strong> feature extracts significant entities (people, locations, organizations..) from text and categorizes them by type.</p>

@@ -52,7 +52,6 @@ textarea, input[type="text"] {
 .results-section {
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 15px;
     border-radius: 5px;
     background-color: #f4f4f4;
 }
@@ -64,7 +63,6 @@ textarea, input[type="text"] {
 }
 
 .results-section {
-    padding: 1em;
     border-radius: 5px;
     color: #1f1f1f;
     margin-top: 1em;
