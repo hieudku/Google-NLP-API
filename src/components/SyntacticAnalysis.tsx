@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Dashboard.css';
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
+import { FaFileExcel } from 'react-icons/fa';
+import * as XLSX from 'xlsx';
 
 interface SyntacticAnalysisProps {
     text: string;
@@ -79,6 +81,19 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
         NN: 'Noun compound modifier - noun used to modify another noun.'
     };
 
+    const exportToExcel = () => {
+        if (!tokens) return;
+
+        const worksheet = XLSX.utils.json_to_sheet(tokens.map(token => ({
+            'Token': token.text !== undefined ? token.text : 'N/A',
+            'PartOfSpeech': token.partOfSpeech !== undefined ? token.partOfSpeech : 'N/A',
+            'Dependency': token.dependencyExplanations !== undefined ? token.dependencyExplanations : 'N/A'
+        })));
+
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Syntax Analysis');
+        XLSX.writeFile(workbook, 'syntactic_analysis.xlsx');
+    };
     return (
         <div className="dashboard">
             <h2>Syntactic Analysis</h2>
@@ -102,6 +117,14 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
 
             {tokens && (
                 <div className="syntactic-analysis-results">
+                    <div className="export-buttons">
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            onClick={exportToExcel}
+                            startIcon={<FaFileExcel />}>Export to Excel
+                        </Button>
+                    </div>
                     <p><strong>Part of Speech:</strong></p>
                     <div className="legend">
                         {legendItems.map((item, index) => (
