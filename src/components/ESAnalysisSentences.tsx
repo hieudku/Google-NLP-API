@@ -7,6 +7,7 @@ import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 interface SentencesAnalysisProps {
     text: string;
@@ -38,6 +39,7 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
             setLoading(false);
         }
     };
+
     const exportToExcel = () => {
         if (!sentences) return;
 
@@ -50,7 +52,28 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
 
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Sentiment Analysis');
-        XLSX.writeFile(workbook, 'sentiment_analysis.xlsx');
+        XLSX.writeFile(workbook, 'sentence_analysis.xlsx');
+    };
+
+    const exportToCSV = () => {
+        if (!sentences) return;
+    
+        const worksheet = XLSX.utils.json_to_sheet(sentences.map(sentence => ({
+            Sentence: sentence.text,
+            'Sentiment Score': sentence.sentiment !== undefined ? sentence.sentiment.toFixed(2) : 'N/A',
+            Magnitude: sentence.magnitude !== undefined ? sentence.magnitude.toFixed(2) : 'N/A',
+            'Aggregated Salience': sentence.aggregatedSalience !== undefined ? sentence.aggregatedSalience.toFixed(2) : 'N/A'
+        })));
+    
+        const csv = XLSX.utils.sheet_to_csv(worksheet);
+        
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'sentence_analysis.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
     return (
         <div className="dashboard">
@@ -89,6 +112,12 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                             color="primary" 
                             onClick={exportToExcel}
                             startIcon={<FaFileExcel />}>Export to Excel
+                        </Button>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            onClick={exportToCSV}
+                            startIcon={<TextSnippetIcon />}>Export to CSV
                         </Button>
                     </div>
                     <h3>Analysis Results</h3>

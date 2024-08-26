@@ -7,6 +7,7 @@ import { FaFileExcel } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 interface SyntacticAnalysisProps {
     text: string;
@@ -96,6 +97,27 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Syntax Analysis');
         XLSX.writeFile(workbook, 'syntactic_analysis.xlsx');
     };
+    
+    const exportToCSV = () => {
+        if (!tokens) return;
+    
+        const worksheet = XLSX.utils.json_to_sheet(tokens.map(token => ({
+            'Token': token.text !== undefined ? token.text : 'N/A',
+            'PartOfSpeech': token.partOfSpeech !== undefined ? token.partOfSpeech : 'N/A',
+            'Dependency': token.dependencyEdge !== undefined ? JSON.stringify(token.dependencyEdge) : 'N/A'
+        })));
+    
+        const csv = XLSX.utils.sheet_to_csv(worksheet);
+        
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'syntactic_analysis.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    
     return (
         <div className="dashboard">
             <h2>Syntactic Analysis</h2>
@@ -130,6 +152,12 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
                             color="primary" 
                             onClick={exportToExcel}
                             startIcon={<FaFileExcel />}>Export to Excel
+                        </Button>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            onClick={exportToCSV}
+                            startIcon={<TextSnippetIcon />}>Export to CSV
                         </Button>
                     </div>
                     <p><strong>Part of Speech:</strong></p>

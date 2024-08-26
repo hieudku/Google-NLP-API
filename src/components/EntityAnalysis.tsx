@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import { FaFileExcel } from 'react-icons/fa';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 interface EntityAnalysisProps {
     text: string;
@@ -54,6 +55,27 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Entities Analysis');
         XLSX.writeFile(workbook, 'entity_analysis.xlsx');
     };
+
+    const exportToCSV = () => {
+        if (!text || !entities) return;
+    
+        const worksheet = XLSX.utils.json_to_sheet(entities.map(entity => ({
+            'Entity': entity.name !== undefined ? entity.name : 'N/A',
+            'Type': entity.type !== undefined ? entity.type : 'N/A',
+            'Salience': entity.salience !== undefined ? entity.salience : 'N/A'
+        })));
+    
+        const csv = XLSX.utils.sheet_to_csv(worksheet);
+        
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'entity_analysis.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+    
     return (
         <div className="dashboard">
             <h2>Entity Analysis</h2>
@@ -88,6 +110,12 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                             color="primary" 
                             onClick={exportToExcel}
                             startIcon={<FaFileExcel />}>Export to Excel
+                        </Button>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            onClick={exportToCSV}
+                            startIcon={<TextSnippetIcon />}>Export to CSV
                         </Button>
                     </div>
                     <h3>Result notes:</h3>
