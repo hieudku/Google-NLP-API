@@ -61,10 +61,11 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
                   startIcon={<ClearIcon />}>Clear
               </Button>
             </div>
-            
+
             {loading && <Box sx={{ width: '100%' }}>
               <LinearProgress />
               </Box>}
+              
             {error && <p>{error}</p>}
       {entities && (
         <div className="results-section">
