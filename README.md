@@ -1,3 +1,4 @@
+
 ## v0.5.5
 - Changed React State hook to maintain text inside textbox when switching tabs.
 - News Feed now routed to Resources link on Navbar.
