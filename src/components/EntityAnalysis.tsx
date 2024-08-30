@@ -109,7 +109,7 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                             variant="contained" 
                             color="primary" 
                             onClick={exportToExcel}
-                            startIcon={<FaFileExcel />}>Export to Excel
+                            startIcon={<FaFileExcel />}>Export to XLSX
                         </Button>
                         <Button
                             variant="contained" 

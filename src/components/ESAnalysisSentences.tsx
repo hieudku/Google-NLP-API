@@ -111,7 +111,7 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                             variant="contained" 
                             color="primary" 
                             onClick={exportToExcel}
-                            startIcon={<FaFileExcel />}>Export to Excel
+                            startIcon={<FaFileExcel />}>Export to XLSX
                         </Button>
                         <Button
                             variant="contained" 
