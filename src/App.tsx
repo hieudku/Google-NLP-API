@@ -12,6 +12,7 @@ import ContactMe from './components/Misc/Contact';
 import AboutThisApp from './components/Misc/About';
 import axios from 'axios';
 import { trackPageVisit } from './firebase';
+import SearchPage from './components/Reddit/SearchPage';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/contact" element={<ContactMe />} />
         <Route path="/about" element={<AboutThisApp />} />
         <Route path="/sources" element={<Feed />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </div>
     </Router>

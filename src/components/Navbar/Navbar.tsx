@@ -61,6 +61,7 @@ const Navbar:React.FC = () => {
                 <br />
                 <br />
                 <a className= "navbar-link" href="/">Home</a>
+                <a className ="navbar-link" href="/search">Reddit</a>
                 <a className= "navbar-link" href="/sources">Sources</a>
                 <a className= "navbar-link" href="/about">About</a>
                 <a className= "navbar-link" href="/contact">Contact</a>

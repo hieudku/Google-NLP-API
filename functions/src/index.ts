@@ -71,7 +71,27 @@ export const redditAuthCallback = functions.https.onRequest(
       res.status(500).send("Error fetching tokens");
     }
   });
+// Get Reddit data
+export const getRedditData = functions.https.onRequest(async (req, res) => {
+  const term = req.query.term;
+  const accessToken = "your-access-token";  // Replace with a secure method to obtain the token
 
+  try {
+      const response = await axios.get(`https://oauth.reddit.com/search?q=${term}`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "User-Agent": "ContentAnalysisApp/0.1 by sriracha0811",
+          },
+      });
+      res.json(response.data);
+  } catch (error) {
+      if (error instanceof Error) {
+          res.status(500).send(error.message);
+      } else {
+          res.status(500).send("An unexpected error occurred");
+      }
+  }
+});
 // Initialize the Google Cloud Natural Language client
 const client = new language.LanguageServiceClient();
 
