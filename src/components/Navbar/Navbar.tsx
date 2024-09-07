@@ -46,10 +46,7 @@ const Navbar:React.FC = () => {
             </button>
 
             <div className="navbar-brand">
-                <div className="brand-logo">
-                <p><strong>Unredacted</strong></p>
-                <VisibilityIcon sx={{ fontSize: 30, color: '#f1f1f1' }}/>
-                </div>
+                <p>v0.5.6</p>
             </div>
 
             <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>

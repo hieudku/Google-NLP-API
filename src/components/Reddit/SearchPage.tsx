@@ -8,7 +8,8 @@ const SearchPage: React.FC = () => {
 
     const handleSearch = async (term: string) => {
         try {
-            const accessToken = "your-access-token";  // Obtain this securely
+            const accessToken = "your-access-token";  
+            console.log(accessToken);
             const response = await axios.get(`https://oauth.reddit.com/search?q=${term}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

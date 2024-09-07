@@ -1,7 +1,7 @@
 import React from "react";
 
 interface RedditPostProps {
-    post: any;  // Adjust the type based on your API response structure
+    post: any; 
 }
 
 const RedditPost: React.FC<RedditPostProps> = ({ post }) => {
