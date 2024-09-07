@@ -13,7 +13,85 @@ import * as functions from "firebase-functions";
 import * as language from "@google-cloud/language";
 import {Request, Response} from "express";
 import * as cors from "cors";
+import * as querystring from "querystring";
+import axios from "axios";
 
+// Reddit Authorization URL
+const clientId = functions.config().reddit.client_id;
+const clientSecret = functions.config().reddit.client_secret;
+
+const redirectUri = "https://automatedcontenthub-hc.web.app/callback";
+const state = "random_string";
+const scope = "read";
+
+export const getRedditAuthUrl = functions.https.onRequest((req, res) => {
+  const authorizationUrl = `https://www.reddit.com/api/v1/authorize?${querystring.stringify({
+    client_id: clientId,
+    response_type: "code",
+    state: state,
+    redirect_uri: redirectUri,
+    duration: "permanent",
+    scope: scope,
+  })}`;
+  console.log("Authorization URL:", authorizationUrl);
+  res.send({url: authorizationUrl});
+});
+
+export const redditAuthCallback = functions.https.onRequest(
+  async (req, res) => {
+    const {code, state} = req.query;
+    if (state !== "random_string") {
+      res.status(403).send("State does not match");
+      return;
+    }
+
+    try {
+      const tokenResponse = await axios.post("https://www.reddit.com/api/v1/access_token", querystring.stringify({
+        grant_type: "authorization_code",
+        code: code as string,
+        redirect_uri: redirectUri,
+      }), {
+        auth: {
+          username: clientId,
+          password: clientSecret,
+        },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+
+      const {accessToken, refreshToken} = tokenResponse.data;
+
+      console.log("Access Token:", accessToken);
+      console.log("Refresh Token:", refreshToken);
+
+      res.send("Authorization successful! You can close this window.");
+    } catch (error) {
+      console.error("Error fetching tokens: ", error);
+      res.status(500).send("Error fetching tokens");
+    }
+  });
+// Get Reddit data
+export const getRedditData = functions.https.onRequest(async (req, res) => {
+  const term = req.query.term;
+  const accessToken = "your-access-token";  // Replace with a secure method to obtain the token
+
+  try {
+      const response = await axios.get(`https://oauth.reddit.com/search?q=${term}`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "User-Agent": "ContentAnalysisApp/0.1 by sriracha0811",
+          },
+      });
+      res.json(response.data);
+  } catch (error) {
+      if (error instanceof Error) {
+          res.status(500).send(error.message);
+      } else {
+          res.status(500).send("An unexpected error occurred");
+      }
+  }
+});
 // Initialize the Google Cloud Natural Language client
 const client = new language.LanguageServiceClient();
 
