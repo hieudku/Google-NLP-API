@@ -2,7 +2,7 @@
 
 A web app that analyzes text using Google Cloud's Natural Language API. It can break down sentiment, detect entities, and analyze syntax. You can either enter your own text or pull news articles using the Newsdata.io API.
 
-This project is complete and archived. API features are currently turned off due to billing limitations on Google Cloud, but everything else works as expected.
+This project is complete and archived. API features are currently turned off due to billing limitations on Google Cloud, but everything else works as expected (per screenshots).
 
 ## Features
 
