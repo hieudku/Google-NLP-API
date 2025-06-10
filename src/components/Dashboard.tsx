@@ -6,6 +6,8 @@ import SyntacticAnalysis from './SyntacticAnalysis';
 import EntitySentimentAnalysis from './EntitySentimentAnalysis';
 import EntitySentimentAnalysisSentences from './ESAnalysisSentences';
 import Button from '@mui/material/Button';
+import Hyperspeed from './Misc/Hyperspeed';
+
 
 const Dashboard: React.FC = () => {
     const [text, setText] = useState<string>('');
@@ -15,6 +17,7 @@ const Dashboard: React.FC = () => {
     }
     return (
         <div className="dashboard">
+                  <Hyperspeed />
             <h1 className="dashboard-title">Enter/paste text to analyze</h1>
             <div className="tabs">
                 <Button variant='contained'  onClick={() => setActiveTab('sentiment')} className={activeTab === 'sentiment' ? 'active' : ''}>

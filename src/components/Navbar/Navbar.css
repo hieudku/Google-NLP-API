@@ -2,8 +2,8 @@ body {
   margin: 0;
 }
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; padding-left: 50px;
-            background-color: #f1f1f1; color: #1d1d1d;; position: relative; z-index: 3; position:sticky;
-            position: -webkit-sticky; top: 0; box-shadow: 5px 2px 5px 1px #b9b9b9;}
+            background-color: #252424; color: #c6c1c1;; position: relative; z-index: 3; position:sticky;
+            position: -webkit-sticky; top: 0; box-shadow: 5px 2px 5px 1px #212121;}
 
 
 .navbar-toggle { background: none; border: none; font-size: 24px; color: #fafcff; cursor: pointer; display: block; z-index: 1;}
@@ -12,7 +12,7 @@ body {
 
 .navbar-menu  { color: #fafcff; text-decoration: none; padding: 10px 0; }
 
-.navbar-link { color: #252525}
+.navbar-link { color: #c9c7c7}
 
 .navbar-menu.open { display: flex; }
 
@@ -32,7 +32,7 @@ body {
     width: 250px; 
     text-align: left;
     background-color: #e4e4e4;
-    color: #252525;
+    color: #cbc6c6;
     display: flex;
     flex-direction: column;
     padding-top: 40px; 
@@ -43,7 +43,7 @@ body {
 
   .navbar-panel.open {transform: translateX(0);}
   
-  .navbar-panel a {padding: 15px; text-decoration: none; color: #252525; width: auto; padding-left: 60px;
+  .navbar-panel a {padding: 15px; text-decoration: none; color: #464545; width: auto; padding-left: 60px;
   }
 
   .app-logo {
@@ -62,6 +62,7 @@ body {
   }
 
   .navbar-brand {
+    font-size: clamp(2rem, 2rem);
     display: flex;
     flex-direction: column;
     align-items: baseline;

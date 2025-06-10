@@ -3,6 +3,8 @@
     max-width: 800px;
     margin: 0 auto;
     text-align:left;
+    background-color: rgba(34, 33, 33, 0);
+    border-radius: 12px;
 }
 .example-text-buttons {
     margin-top: 50px;
@@ -115,9 +117,7 @@ textarea, input[type="text"] {
 }
 
 .tab-content {
-    padding-bottom: 10px;
-    border: 1px solid #f4f4f4;
-    background-color: #f4f4f4;
+    background-color: rgba(34, 33, 33, 0.5);
 }
 
 .dashboard-title {

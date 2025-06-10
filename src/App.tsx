@@ -12,6 +12,8 @@ import ContactMe from './components/Misc/Contact';
 import AboutThisApp from './components/Misc/About';
 import axios from 'axios';
 import { trackPageVisit } from './firebase';
+import Aurora from './components/Misc/Aurora';
+import Hyperspeed from './components/Misc/Hyperspeed';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {

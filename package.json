@@ -19,12 +19,15 @@
     "axios": "^1.7.4",
     "d3": "^7.9.0",
     "firebase": "^10.12.5",
+    "ogl": "^1.0.11",
     "papaparse": "^5.4.1",
+    "postprocessing": "^6.37.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.26.0",
     "react-scripts": "^5.0.1",
+    "three": "^0.177.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
@@ -55,6 +58,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",
-    "@types/firebase": "^2.4.32"
+    "@types/firebase": "^2.4.32",
+    "@types/three": "^0.177.0"
   }
 }
