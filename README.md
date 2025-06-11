@@ -1,6 +1,6 @@
 # ContentAnalysisApp (v1.0.0)
 
-A web app that analyzes text using Google Cloud's Natural Language API. It can break down sentiment, detect entities, and analyze syntax. You can either enter your own text or pull news articles using the Newsdata.io API.
+A web app that analyzes text using Google Cloud's Natural Language API. It can break down sentiment, detect entities, and analyze syntax. You can either enter your own text or pull from news articles using the Newsdata.io API.
 
 This project is complete and archived. API features are currently turned off due to billing limitations on Google Cloud, but everything else works as expected (per screenshots).
 
@@ -21,7 +21,7 @@ This project is complete and archived. API features are currently turned off due
 - Newsdata.io
 - GitHub version control
 
-## Limitations
+## Constraints
 
 - The Google NLP API is disabled due to budget constraints
 - No request rate limiting (would have helped)
@@ -46,7 +46,7 @@ App will be available at `http://localhost:3000`
 
 ## License
 
-This project was created for learning purposes and is not intended for production use.
+- No License
 
 ## v0.5.5
 - Changed React State hook to maintain text inside textbox when switching tabs.
