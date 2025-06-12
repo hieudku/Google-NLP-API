@@ -7,6 +7,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import { Snackbar } from '@mui/material';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface SentenceSentiment {
     text: string;
@@ -20,17 +22,29 @@ interface SentimentAnalysisProps {
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) => {
+const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({ text, onChange }) => {
     const [sentiment, setSentiment] = useState<{ score: number, magnitude: number } | null>(null);
     const [sentences, setSentences] = useState<SentenceSentiment[]>([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [lastCallTime, setLastCallTime] = useState<number | null>(null);
+    const throttleDelay = 60000;
+
+    const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
+
+    const triggerSnackbar = (message: string) => {
+        setSnackbarMessage(message);
+        setShowSnackbar(true);
+    };
 
     const calculateSentimentDistribution = () => {
         let positive = 0;
         let neutral = 0;
         let negative = 0;
-    
+
         sentences.forEach(sentence => {
             if (sentence.score > 0.2) {
                 positive += 1;
@@ -40,21 +54,28 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                 neutral += 1;
             }
         });
-    
+
         return { positive, neutral, negative };
     };
 
     const analyzeText = async () => {
         if (!text) {
-            setError('Please enter some text for analysis.');
+            triggerSnackbar('Please enter some text for analysis.');
             return;
         }
+
+        const now = Date.now();
+        if (lastCallTime && now - lastCallTime < throttleDelay) {
+            triggerSnackbar('Please wait before analyzing again.');
+            return;
+        }
+        setLastCallTime(now);
+
         setLoading(true);
-        setError(null);
 
         try {
             const response = await axios.get(
-                'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeText', 
+                'https://us-central1-automatedcontenthub.cloudfunctions.net/analyzeText',
                 { params: { text: text } }
             );
 
@@ -69,7 +90,7 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                 }
 
                 return {
-                    text: `${index + 1}. ${sentence.text}`, // Ensure text.content is used
+                    text: `${index + 1}. ${sentence.text}`,
                     score: sentimentScore,
                     magnitude: sentence.sentiment.magnitude,
                     category: category,
@@ -80,14 +101,15 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
             setSentences(sentimentData);
         } catch (error: any) {
             if (error.response && error.response.status === 400) {
-                setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+                triggerSnackbar(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
             } else {
-                setError('Unexpected error analyzing entities, please try again later.');
+                triggerSnackbar('Unexpected error analyzing text, please try again later.');
             }
         } finally {
             setLoading(false);
         }
     };
+
     const getColour = (score: number) => {
         if (score > 0.2) return 'green';
         if (score < -0.2) return 'red';
@@ -108,32 +130,30 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     <button className="dashboard-button" onClick={analyzeText} disabled={loading}>
                         {loading ? 'Analyzing...' : 'Analyze'}
                     </button>
-                    <Button 
+                    <Button
                         className="dashboard-button"
                         onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                         startIcon={<ClearIcon />}>Clear
                     </Button>
                 </div>
-                {loading && <Box sx={{ width: '100%' }}>
-              <LinearProgress />
-              </Box>}
+                {loading && <Box sx={{ width: '100%' }}><LinearProgress /></Box>}
             </div>
-            {error && <p className="error-message">{error}</p>}
+
             {sentiment && (
                 <div className="results-section" style={{ color: getColour(sentiment.score) }}>
                     <h3>Overall Sentiment Analysis Results</h3>
                     <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
                     <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
                     <div className="results-section">
-                    <SentimentExplanation />
-                    <br />
-                    <br />
-                <h3>Sentiment Distribution Chart</h3><br />
-                <SentimentPieChart data={calculateSentimentDistribution()}/>
-                </div>
+                        <SentimentExplanation />
+                        <br />
+                        <br />
+                        <h3>Sentiment Distribution Chart</h3><br />
+                        <SentimentPieChart data={calculateSentimentDistribution()} />
+                    </div>
                 </div>
             )}
-                
+
             {sentences.length > 0 && (
                 <div className="results-section">
                     <h3>Sentiment Analysis by Sentences</h3>
@@ -147,6 +167,18 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
                     ))}
                 </div>
             )}
+
+            <Snackbar
+                open={showSnackbar}
+                autoHideDuration={4000}
+                onClose={() => setShowSnackbar(false)}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{ zIndex: 9999 }}
+            >
+                <Alert onClose={() => setShowSnackbar(false)} severity="warning" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
