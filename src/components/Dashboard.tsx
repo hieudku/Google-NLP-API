@@ -7,7 +7,7 @@ import EntitySentimentAnalysis from './EntitySentimentAnalysis';
 import EntitySentimentAnalysisSentences from './ESAnalysisSentences';
 import Button from '@mui/material/Button';
 import Hyperspeed from './Misc/Hyperspeed';
-
+import Particles from './Misc/Particles';
 
 const Dashboard: React.FC = () => {
     const [text, setText] = useState<string>('');
@@ -16,8 +16,8 @@ const Dashboard: React.FC = () => {
         setText(event.target.value);
     }
     return (
+
         <div className="dashboard">
-                  <Hyperspeed />
             <h1 className="dashboard-title">Enter/paste text to analyze</h1>
             <p className="info-box">
                 <strong>Note:</strong><br/>

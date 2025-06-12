@@ -14,6 +14,7 @@ import axios from 'axios';
 import { trackPageVisit } from './firebase';
 import Aurora from './components/Misc/Aurora';
 import Hyperspeed from './components/Misc/Hyperspeed';
+import Particles from './components/Misc/Particles';
 /*
 const AppTest:React.FC = () => {
   const handleClick = () => {
@@ -31,6 +32,17 @@ const AppTest:React.FC = () => {
 function App() {
   trackPageVisit();
   return (
+    <div className="app-wrapper">
+      <Particles
+        particleColors={['#ffffff', '#ffffff']}
+        particleCount={1000}
+        particleSpread={10}
+        speed={0.1}
+        particleBaseSize={100}
+        moveParticlesOnHover={true}
+        alphaParticles={true}
+        disableRotation={true}
+      />
     <Router>
     <div className="App">
       <Navbar />
@@ -51,7 +63,7 @@ function App() {
       </Routes>
     </div>
     </Router>
-    
+    </div>
   );
 }
 export default App;

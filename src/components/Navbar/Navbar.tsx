@@ -38,8 +38,8 @@ const Navbar:React.FC = () => {
                     >
                     <path
                         d="M3 6H21M3 12H21M3 18H21"
-                        stroke="black"
-                        strokeWidth="2"
+                        stroke="white"
+                        strokeWidth="3"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                     />
