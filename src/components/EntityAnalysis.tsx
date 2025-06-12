@@ -10,7 +10,8 @@ import { FaFileExcel } from 'react-icons/fa';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-
+import { Snackbar } from "@mui/material";
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 interface EntityAnalysisProps {
     text: string;
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -20,12 +21,38 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
     const [entities, setEntities] = useState<{ name:string, type: string, salience: number} [] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [lastCallTime, setLastCallTime] = useState<number | null>(null);
+    const throttleDelay = 60000;
+    const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+
+    const triggerSnackbar = (message: string) => {
+    setSnackbarMessage(message);
+    setShowSnackbar(true);
+    };
+
+    const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+        props,
+        ref,
+        ) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+        });
 
     const analyzeEntities = async () => {
         if (!text) {
-            setError('Please enter text.');
+            triggerSnackbar("Please enter text.");
             return;
         }
+        if (text.length > 1000) {
+            triggerSnackbar("Text exceeds 1000 character limit.");
+        }
+
+        const now = Date.now();
+        if (lastCallTime && now - lastCallTime < throttleDelay) {
+            triggerSnackbar("Please wait before analyzing again.");
+            return;
+        }
+        setLastCallTime(now);
         setLoading(true);
         setError(null);
 
@@ -37,9 +64,9 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
             setEntities(response.data.entities);
         } catch (error: any) {
             if (error.response && error.response.status === 400) {
-                setError(error.response.data || 'Text exceeds limit or is invalid.');
+                triggerSnackbar(error.response.data || 'Text exceeds limit or is invalid.');
             } else {
-                setError('Unexpected error analyzing entities, please try again later.');
+                triggerSnackbar('Unexpected error analyzing entities, please try again later.');
             }
         } finally {
             setLoading(false);
@@ -98,6 +125,23 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                     onClick={() => onChange({ target: { value: '' } } as React.ChangeEvent<HTMLTextAreaElement>)}
                     startIcon={<ClearIcon />}>Clear
                 </Button>
+
+                {/* display snack errors */}
+                <Snackbar open={showSnackbar} 
+                        autoHideDuration={4000} 
+                        onClose={() => setShowSnackbar(false)}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                        sx={{ zIndex: 9999 }}
+                        >
+                      <Alert
+                        onClose={() => setShowSnackbar(false)}
+                        severity="warning"
+                        sx={{ width: '100%' }}
+                    >
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
+
             </div>
             
             {loading && <Box sx={{ width: '100%' }}>
