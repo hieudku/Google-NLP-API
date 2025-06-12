@@ -8,6 +8,8 @@ import * as XLSX from 'xlsx';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 interface SyntacticAnalysisProps {
     text: string;
@@ -18,12 +20,30 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
     const [tokens, setTokens] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [lastCallTime, setLastCallTime] = useState<number | null>(null);
+    const throttleDelay = 60000;
+
+    const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
 
     const analyzeSyntax = async () => {
         if (!text) {
-            setError('Please enter some text for analysis.');
+            setSnackbarMessage('Please enter some text for analysis.');
+            setShowSnackbar(true);
             return;
         }
+
+        const now = Date.now();
+        if (lastCallTime && now - lastCallTime < throttleDelay) {
+            setSnackbarMessage('Please wait before analyzing again.');
+            setShowSnackbar(true);
+            return;
+        }
+        setLastCallTime(now);
+
         setLoading(true);
         setError(null);
 
@@ -36,30 +56,31 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
         } 
         catch (error: any) {
           if (error.response && error.response.status === 400) {
-              setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+              setSnackbarMessage(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
           } else {
-              setError('Unexpected error analyzing entities, please try again later.');
+              setSnackbarMessage('Unexpected error analyzing syntax, please try again later.');
           }
+          setShowSnackbar(true);
         } 
         finally {
             setLoading(false);
         }
     };
-    // Set colours based on types of word
+
     const getColorForPartOfSpeech = (partOfSpeech: string) => {
         switch (partOfSpeech) {
-            case 'NOUN': return '#4CAF50'; // Green
-            case 'VERB': return '#2196F3'; // Blue
-            case 'ADJ': return '#FFEB3B'; // Yellow
-            case 'ADP': return '#FF9800'; // Orange
-            case 'PRON': return '#9C27B0'; // Purple
-            case 'CONJ': return '#E91E63'; // Pink
-            case 'PUNCT': return '#607D8B'; // Gray
-            case 'NUM': return '#00BCD4'; // Cyan
-            default: return '#E0E0E0'; // Black - other
+            case 'NOUN': return '#4CAF50';
+            case 'VERB': return '#2196F3';
+            case 'ADJ': return '#FFEB3B';
+            case 'ADP': return '#FF9800';
+            case 'PRON': return '#9C27B0';
+            case 'CONJ': return '#E91E63';
+            case 'PUNCT': return '#607D8B';
+            case 'NUM': return '#00BCD4';
+            default: return '#E0E0E0';
         }
     };
-    // Legend
+
     const legendItems = [
         { label: 'Noun', color: '#4CAF50' },
         { label: 'Verb', color: '#2196F3' },
@@ -101,18 +122,18 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Syntax Analysis');
         XLSX.writeFile(workbook, 'syntactic_analysis.xlsx');
     };
-    
+
     const exportToCSV = () => {
         if (!tokens) return;
-    
+
         const worksheet = XLSX.utils.json_to_sheet(tokens.map(token => ({
             'Token': token.text !== undefined ? token.text : 'N/A',
             'PartOfSpeech': token.partOfSpeech !== undefined ? token.partOfSpeech : 'N/A',
             'Dependency': token.dependencyEdge !== undefined ? JSON.stringify(token.dependencyEdge) : 'N/A'
         })));
-    
+
         const csv = XLSX.utils.sheet_to_csv(worksheet);
-        
+
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
@@ -121,7 +142,7 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
         link.click();
         document.body.removeChild(link);
     };
-    
+
     return (
         <div className="dashboard">
             <h2>Syntactic Analysis</h2>
@@ -146,7 +167,17 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
               <LinearProgress />
               </Box>}
 
-            {error && <p className="error-message">{error}</p>}
+            <Snackbar
+                open={showSnackbar}
+                autoHideDuration={4000}
+                onClose={() => setShowSnackbar(false)}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{ zIndex: 9999 }}
+            >
+                <Alert onClose={() => setShowSnackbar(false)} severity="warning" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
 
             {tokens && (
                 <div className="syntactic-analysis-results">
