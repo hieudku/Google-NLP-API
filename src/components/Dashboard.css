@@ -25,14 +25,14 @@ h2 {
 }
 
 .info-box {
-  background-color: #295e41;
-  border-top: 5px solid #cbcfd3;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #beb2b2;
-  border-radius: 4px;
+    background-color: #295e41;
+    border-top: 5px solid #cbcfd3;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #beb2b2;
+    border-radius: 4px;
 }
 
 textarea, input[type="text"] {
@@ -109,25 +109,29 @@ textarea, input[type="text"] {
 }
 
 .tabs button {
-    padding: 10px 10px;
-    padding-bottom: 10px;
-    width: 100px;
+    width: 120px;
+    background-color: #f2f2f2;
+    color: #333;
     border: none;
-    background-color: #ecedee;
-    color: #1d1d1d;
+    border-radius: 0;
+    padding: 10px 16px;
     cursor: pointer;
-    font-size: 10px;
-    font-weight: bold;
-    transition: background-color 0.2s ease-in-out;
-    border: 1px solid #cccccc;
+    transition: all 0.2s ease-in-out;
 }
 .tabs button:hover {
     background-color: #ecedee;
 }
 .tabs button.active {
-    background-color: #2c6ac7;
-    color: #eeeeee;
-    border: 1px solid #2c6ac7;
+    background-color: #295e41;
+    color: #beb2b2;
+    font-weight: bold;
+    box-shadow: -4px 2px 4px rgba(0, 0, 0, 0.2),  /* left side */
+                4px 2px 4px rgba(0, 0, 0, 0.2),  /* right side */
+                0 4px 6px rgba(0, 0, 0, 0.1);   /* bottom */
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+
 }
 
 .tab-content {

@@ -23,23 +23,23 @@ const Dashboard: React.FC = () => {
                 <strong>Note:</strong><br/>
                 Please enter up to <strong>1000 characters</strong> of text.<br />
                 Avoid pasting large documents or code.<br />
-                You can re-analyze after <strong>60 seconds</strong> to avoid throttling.
+                You can analyze again after <strong>60 seconds</strong> to avoid throttling.
             </p>
             <div className="tabs">
                 <Button variant='contained'  onClick={() => setActiveTab('sentiment')} className={activeTab === 'sentiment' ? 'active' : ''}>
-                    Sentiment Analysis
+                    Sentiment
                 </Button>
                 <Button variant='contained' onClick={() => setActiveTab('entities')} className={activeTab === 'entities' ? 'active' : ''}>
-                    Entity Analysis
+                    Entity
                 </Button>
                 <Button variant='contained' onClick={() => setActiveTab('syntax')} className={activeTab === 'syntax' ? 'active' : ''}>
-                    Syntactic Analysis
+                    Syntactic
                 </Button>
                 <Button variant='contained' onClick={() => setActiveTab('entitiesSentiment')} className={activeTab === 'entitiesSentiment' ? 'active' : ''}>
-                    Tokens Analysis
+                    Tokens
                 </Button>
                 <Button variant='contained' onClick={() => setActiveTab('entitiesSentimentSentence')} className={activeTab === 'entitiesSentimentSentence' ? 'active' : ''}>
-                    Sentences Analysis
+                    Sentences
                 </Button>
             </div>
             <div className="tab-content">
