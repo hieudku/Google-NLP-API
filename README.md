@@ -1,6 +1,15 @@
 # v1.1.0
 ## New Additions and Info
 
+### 1. Animated Background
+![Particles](./public/msedge_pzGK9Adk1C.gif)
+
+### 2. Decrypted Text Animation - Sentiment
+![Decryption](./public/msedge_7wb3NlnX1h.gif)
+
+### 2. Decrypted Text Animation - Entity
+![Decryption](./public/msedge_UQctLcvFCJ.gif)
+
 ### Decrypt-style Text Animation
 
 Most section headers and result texts now animate as if they're being decrypted letter by letter.
