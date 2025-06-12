@@ -123,6 +123,7 @@ textarea, input[type="text"] {
 .dashboard-title {
     text-align: center;
     margin-bottom: 30px;
+    color: #eeeeee;
 }
 ul {
     list-style-type: none;
