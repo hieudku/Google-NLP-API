@@ -12,6 +12,8 @@ import LinearProgress from '@mui/material/LinearProgress';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import { Snackbar } from "@mui/material";
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import DecryptedText from "./Misc/DecryptedText";
+
 interface EntityAnalysisProps {
     text: string;
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -166,22 +168,92 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                             startIcon={<TextSnippetIcon />}>Export to CSV
                         </Button>
                     </div>
-                    <h3>Result notes:</h3>
-                    <br />
-                    <p><strong>Entity Analysis</strong> feature extracts significant entities (people, locations, organizations..) from text and categorizes them by type.</p>
-                    <p><strong>Salience Score</strong> measure their importance in the text, the higher the score the more important and prominent.</p>
-                    <br />
-                <h3>Entities</h3>
+                    <DecryptedText
+                        text="Result notes:"
+                        animateOn="view"
+                        sequential={true}
+                        speed={30}
+                        />
+
+                        <br />
+
+                        <p>
+                        <strong>
+                            <DecryptedText
+                            text="Entity Analysis"
+                            animateOn="view"
+                            sequential={true}
+                            speed={100}
+                            />
+                        </strong>{' '}
+                        <DecryptedText
+                            text="feature extracts significant entities (people, locations, organizations..) from text and categorizes them by type."
+                            animateOn="view"
+                            sequential={true}
+                            speed={100}
+                        />
+                        </p>
+
+                        <p>
+                        <strong>
+                            <DecryptedText
+                            text="Salience Score"
+                            animateOn="view"
+                            sequential={true}
+                            speed={100}
+                            />
+                        </strong>{' '}
+                        <DecryptedText
+                            text="measure their importance in the text, the higher the score the more important and prominent."
+                            animateOn="view"
+                            sequential={true}
+                            speed={100}
+                        />
+                        </p>
+
+                        <br />
+
+                        <DecryptedText
+                        text="Entities"
+                        animateOn="view"
+                        sequential={true}
+                        speed={100}
+                        />
                 <EntityVisualization data={entities} />
                 
-                <h3>Entities list</h3>
+                <h3>
+                <DecryptedText text="Entities list" animateOn="view" sequential={true} speed={30} />
+                </h3>
+
                 <ul>
-                        {entities.map((entity, index) => (
-                            <li key={index}>
-                                <strong>{entity.name}</strong> - {entity.type} (Salience: {entity.salience.toPrecision(6)})
-                            </li>
-                        ))}
-                    </ul>
+                {entities.map((entity, index) => (
+                    <li key={index}>
+                    <strong>
+                        <DecryptedText
+                        text={entity.name}
+                        animateOn="view"
+                        sequential={true}
+                        speed={100}
+                        />
+                    </strong>{' '}
+                    -{' '}
+                    <DecryptedText
+                        text={entity.type}
+                        animateOn="view"
+                        sequential={true}
+                        speed={100}
+                    />{' '}
+                    (Salience:{' '}
+                    <DecryptedText
+                        text={entity.salience.toPrecision(6)}
+                        animateOn="view"
+                        sequential={true}
+                        speed={100}
+                    />
+                    )
+                    </li>
+                ))}
+                </ul>
             </div>
                 
             

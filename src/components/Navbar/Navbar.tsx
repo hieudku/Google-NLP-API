@@ -60,28 +60,7 @@ const Navbar:React.FC = () => {
             <div ref={panelRef} className={`navbar-panel ${isOpen ? 'open' : ''}`}>
                 <br />
                 <br />
-                <a className="navbar-link" href="/login">
-                    <GlitchText
-                        speed={1}
-                        enableShadows={true}
-                        enableOnHover={true}
-                        className="glitch-nav"
-                    >
-                        Login
-                    </GlitchText>
-                    </a>
-                                <a className="navbar-link" href="/register">
-                    <GlitchText
-                        speed={1}
-                        enableShadows={true}
-                        enableOnHover={true}
-                        className="glitch-nav"
-                    >
-                        Register
-                    </GlitchText>
-                    </a>
-                <br />
-                <br />
+
                                 <a className="navbar-link" href="/">
                     <GlitchText
                         speed={1}

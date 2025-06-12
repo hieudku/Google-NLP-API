@@ -8,6 +8,7 @@ import EntitySentimentAnalysisSentences from './ESAnalysisSentences';
 import Button from '@mui/material/Button';
 import Hyperspeed from './Misc/Hyperspeed';
 import Particles from './Misc/Particles';
+import DecryptedText from './Misc/DecryptedText';
 
 const Dashboard: React.FC = () => {
     const [text, setText] = useState<string>('');
@@ -18,13 +19,48 @@ const Dashboard: React.FC = () => {
     return (
 
         <div className="dashboard">
-            <h1 className="dashboard-title">Enter/paste text to analyze</h1>
-            <p className="info-box">
-                <strong>Note:</strong><br/>
-                Please enter up to <strong>1000 characters</strong> of text.<br />
-                Avoid pasting large documents or code.<br />
-                You can analyze again after <strong>60 seconds</strong> to avoid throttling.
-            </p>
+            <h1 className="dashboard-title">
+                <DecryptedText
+                    text="Enter/paste text to analyze"
+                    encryptedClassName='encrypted'
+                    speed={150}
+                    sequential={true}
+                    className="revealed"
+                    animateOn="view"
+                />
+                </h1>
+
+            <div className="info-box">
+                <DecryptedText
+                    text="Note:"
+                    className="decrypted-note-title"
+                    animateOn="view"
+                />
+                <br />
+                <DecryptedText
+                    text="Please enter up to 1000 characters of text."
+                    speed={120}
+                    sequential={true}
+                    animateOn="view"
+                    className="decrypted-note"
+                />
+                <br />
+                <DecryptedText
+                    text="Avoid pasting large documents or code."
+                    speed={120}
+                    sequential={true}
+                    animateOn="view"
+                    className="decrypted-note"
+                />
+                <br />
+                <DecryptedText
+                    text="Wait 60 seconds before analyzing again to avoid throttling."
+                    speed={100}
+                    sequential={true}
+                    animateOn="view"
+                    className="decrypted-note"
+                />
+</div>
             <div className="tabs">
                 <Button variant='contained'  onClick={() => setActiveTab('sentiment')} className={activeTab === 'sentiment' ? 'active' : ''}>
                     Sentiment

@@ -24,6 +24,32 @@ h2 {
     color: #eeeeee;
 }
 
+/* Decrypt */
+.decrypted-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.decrypted-note-title {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.decrypted-note {
+    font-size: 1rem;
+    color: #cccccc;
+}
+
+.encrypted {
+    opacity: 0.4;
+}
+
+.revealed {
+  color: #00f6ff;
+  transition: color 0.2s ease-in;
+}
+
 .info-box {
     background-color: #295e41;
     border-top: 5px solid #cbcfd3;

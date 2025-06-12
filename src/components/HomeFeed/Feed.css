@@ -10,7 +10,7 @@
     text-align: center;
     margin: 2em 0;
     font-size: 1.5em;
-    color: #333;
+    color: #a49f9f;
 }
 
 /* Menu Styling */
@@ -19,24 +19,22 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1em;
     margin-bottom: 2em;
     position:sticky;
     position: -webkit-sticky;
     top: 55px;
     z-index: 2;
     padding: 1em 0;
-    border-bottom: 1px solid #ddd;
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0);
 }
 .menu li {
     display: inline-block;
     font-size: 1.1em;
     padding: 0.5em 1.2em;
     background: #eee;
-    border-radius: 20px;
     cursor: pointer;
     transition: 0.3s;
+    border-left: 1px solid rgb(118, 115, 115);
 }
 
 .menu .inactive {
@@ -45,12 +43,12 @@
 }
 
 .menu .active {
-    background: #ccc;
-    color: #000;
+    background: #295e41;
+    color: #d7d1d1;
 }
 
 .menu .active:hover {
-    background: #aeaeae;
+    background: #3c7857;
 }
 
 .menu .inactive:hover {

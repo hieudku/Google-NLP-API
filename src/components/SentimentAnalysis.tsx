@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Snackbar } from '@mui/material';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import DecryptedText from './Misc/DecryptedText';
 
 interface SentenceSentiment {
     text: string;
@@ -141,32 +142,97 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({ text, onChange })
 
             {sentiment && (
                 <div className="results-section" style={{ color: getColour(sentiment.score) }}>
-                    <h3>Overall Sentiment Analysis Results</h3>
-                    <p><strong>Sentiment Score:</strong> {sentiment.score.toPrecision(4)}</p>
-                    <p><strong>Sentiment Magnitude:</strong> {sentiment.magnitude.toPrecision(4)}</p>
+                    <DecryptedText
+                    text="Overall Sentiment Analysis Results"
+                    animateOn="view"
+                    sequential
+                    speed={100}
+                    />
+                    <p>
+                    <strong>
+                        <DecryptedText
+                        text="Sentiment Score:"
+                        animateOn="view"
+                        sequential
+                        speed={100}
+                        />
+                    </strong>{' '}
+                    {sentiment.score.toPrecision(4)}
+                    </p>
+                    <p>
+                    <strong>
+                        <DecryptedText
+                        text="Sentiment Magnitude:"
+                        animateOn="view"
+                        sequential
+                        speed={100}
+                        />
+                    </strong>{' '}
+                    {sentiment.magnitude.toPrecision(4)}
+                    </p>
+
                     <div className="results-section">
-                        <SentimentExplanation />
-                        <br />
-                        <br />
-                        <h3>Sentiment Distribution Chart</h3><br />
-                        <SentimentPieChart data={calculateSentimentDistribution()} />
+                    <SentimentExplanation />
+                    <br />
+                    <br />
+                    <DecryptedText
+                        text="Sentiment Distribution Chart"
+                        animateOn="view"
+                        sequential
+                        speed={100}
+                    />
+                    <br />
+                    <SentimentPieChart data={calculateSentimentDistribution()} />
                     </div>
                 </div>
-            )}
+                )}
 
-            {sentences.length > 0 && (
+                {sentences.length > 0 && (
                 <div className="results-section">
-                    <h3>Sentiment Analysis by Sentences</h3>
+                    <DecryptedText
+                    text="Sentiment Analysis by Sentences"
+                    animateOn="view"
+                    sequential
+                    speed={100}
+                    />
                     {sentences.map((sentence, index) => (
-                        <div key={index} className="sentence-result" style={{ color: getColour(sentence.score) }}>
-                            <p>{sentence.text}</p>
-                            <p><strong>Score:</strong> {sentence.score.toPrecision(4)}</p>
-                            <p><strong>Magnitude:</strong> {sentence.magnitude.toPrecision(4)}</p>
-                            <br />
-                        </div>
+                    <div key={index} className="sentence-result" style={{ color: getColour(sentence.score) }}>
+                        <p>
+                        <DecryptedText
+                            text={sentence.text}
+                            animateOn="view"
+                            sequential
+                            speed={100}
+                        />
+                        </p>
+                        <p>
+                        <strong>
+                            <DecryptedText
+                            text="Score:"
+                            animateOn="view"
+                            sequential
+                            speed={100}
+                            />
+                        </strong>{' '}
+                        {sentence.score.toPrecision(4)}
+                        </p>
+                        <p>
+                        <strong>
+                            <DecryptedText
+                            text="Magnitude:"
+                            animateOn="view"
+                            sequential
+                            speed={100}
+                            />
+                        </strong>{' '}
+                        {sentence.magnitude.toPrecision(4)}
+                        </p>
+                        <br />
+                    </div>
                     ))}
                 </div>
-            )}
+                )}
+
 
             <Snackbar
                 open={showSnackbar}
