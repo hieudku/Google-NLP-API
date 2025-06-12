@@ -29,7 +29,10 @@ export const analyzeText = functions.https.onRequest(
         res.status(400).send("Text is required");
         return;
       }
-
+      if (text.length > 1000) {
+        res.status(400).send("Text exceeds 1000 character limit.");
+        return;
+      }
       try {
         const [result] = await client.analyzeSentiment({
           document: {
@@ -70,7 +73,10 @@ export const analyzeEntities = functions.https.onRequest(
         res.status(400).send("No text provided");
         return;
       }
-
+      if (text.length > 1000) {
+        res.status(400).send("Text exceeds 1000 character limit.");
+        return;
+      }
       try {
         const [result] = await client.analyzeEntities({
           document: {
@@ -104,7 +110,10 @@ export const analyzeSyntax = functions.https.onRequest(
         res.status(400).send("Text is required");
         return;
       }
-
+      if (text.length > 1000) {
+        res.status(400).send("Text exceeds 1000 character limit.");
+        return;
+      }
       try {
         // Perform syntactic analysis
         const [result] = await client.analyzeSyntax({
@@ -139,7 +148,10 @@ export const analyzeEntitySentiment = functions.https.onRequest(
         res.status(400).send("Text is required");
         return;
       }
-
+      if (text.length > 1000) {
+        res.status(400).send("Text exceeds 1000 character limit.");
+        return;
+      }
       try {
         const [result] = await client.analyzeEntitySentiment({
           document: {
@@ -176,7 +188,10 @@ export const analyzeSentencesWithSalience = functions.https.onRequest(
         res.status(400).send("Text is required");
         return;
       }
-
+      if (text.length > 1000) {
+        res.status(400).send("Text exceeds 1000 character limit.");
+        return;
+      }
       try {
         // Perform both sentiment and entity analysis
         const [sentimentResult] = await client.analyzeSentiment({
