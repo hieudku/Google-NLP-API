@@ -32,8 +32,12 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
             setEntities(response.data.entities);
             console.log('Entities:', entities);
         }
-        catch (error) {
-            setError('Error analyzing, please try again.');
+        catch (error: any) {
+          if (error.response && error.response.status === 400) {
+              setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+          } else {
+              setError('Unexpected error analyzing entities, please try again later.');
+          }
         }
         finally {
             setLoading(false);

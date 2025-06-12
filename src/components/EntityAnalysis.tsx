@@ -35,8 +35,12 @@ const EntityAnalysis: React.FC<EntityAnalysisProps> = ({text, onChange}) => {
                 { params: {text: text}}
             );
             setEntities(response.data.entities);
-        } catch (error) {
-            setError('Error analysing entities, please try again.');
+        } catch (error: any) {
+            if (error.response && error.response.status === 400) {
+                setError(error.response.data || 'Text exceeds limit or is invalid.');
+            } else {
+                setError('Unexpected error analyzing entities, please try again later.');
+            }
         } finally {
             setLoading(false);
         }

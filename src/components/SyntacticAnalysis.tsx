@@ -34,8 +34,12 @@ const SyntacticAnalysis: React.FC<SyntacticAnalysisProps> = ({text, onChange}) =
             );
             setTokens(response.data.tokens);
         } 
-        catch (error) {
-            setError('Error while analyzing syntax. Please try again.');
+        catch (error: any) {
+          if (error.response && error.response.status === 400) {
+              setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+          } else {
+              setError('Unexpected error analyzing entities, please try again later.');
+          }
         } 
         finally {
             setLoading(false);

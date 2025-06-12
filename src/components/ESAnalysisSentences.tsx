@@ -33,8 +33,12 @@ const EntitySentimentAnalysisSentences: React.FC<SentencesAnalysisProps> = ({tex
                 { params: { text: text } }
             );
             setSentences(response.data.sentences);
-        } catch (error) {
-            setError('Error analyzing, please try again.');
+        } catch (error: any) {
+            if (error.response && error.response.status === 400) {
+                setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+            } else {
+                setError('Unexpected error analyzing entities, please try again later.');
+            }
         } finally {
             setLoading(false);
         }

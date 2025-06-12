@@ -78,8 +78,12 @@ const SentimentAnalysis: React.FC<SentimentAnalysisProps> = ({text, onChange}) =
 
             setSentiment(response.data.sentiment);
             setSentences(sentimentData);
-        } catch (error) {
-            setError('Error analyzing sentiment. Please try again.');
+        } catch (error: any) {
+            if (error.response && error.response.status === 400) {
+                setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+            } else {
+                setError('Unexpected error analyzing entities, please try again later.');
+            }
         } finally {
             setLoading(false);
         }
