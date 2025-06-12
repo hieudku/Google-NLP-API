@@ -1,3 +1,42 @@
+# v1.1.0
+## New Additions and Info
+
+### Decrypt-style Text Animation
+
+Most section headers and result texts now animate as if they're being decrypted letter by letter.
+
+- Animation triggers when the text enters the screen
+- Speed is set at 100ms for a smooth reveal
+- Useful for titles, notes, API result summaries and lists
+- Adds a bit of visual interest to otherwise static text
+
+---
+
+### Rate Limiting
+
+To avoid sending too many requests:
+
+- There’s a 60-second delay before analyzing again
+- Message will show: "Please wait before analyzing again."
+- Helps reduce backend errors and keeps things from crashing
+
+---
+
+### Text Limits and Usage Tips
+
+- Max length is 1000 characters
+- Avoid submitting long essays or code
+- Analysis tabs work one at a time (Sentiment, Entities, Syntax, etc.)
+
+---
+
+### Developer Notes
+
+- The decrypt effect is handled with a `<DecryptedText />` component
+- Animation direction and behavior can be customized with props
+- Particle background responds to cursor movement
+- Styling handled with CSS + Material UI
+
 # ContentAnalysisApp (v1.0.0)
 
 A web app that analyzes text using Google Cloud's Natural Language API. It can break down sentiment, detect entities, and analyze syntax. You can either enter your own text or pull from news articles using the Newsdata.io API.
