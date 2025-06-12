@@ -9,7 +9,7 @@ Most section headers and result texts now animate as if they're being decrypted 
 - Speed is set at 100ms for a smooth reveal
 - Useful for titles, notes, API result summaries and lists
 - Adds a bit of visual interest to otherwise static text
-
+- Animations extracted from: https://www.reactbits.dev/
 ---
 
 ### Rate Limiting
@@ -26,7 +26,7 @@ To avoid sending too many requests:
 
 - Max length is 1000 characters
 - Avoid submitting long essays or code
-- Analysis tabs work one at a time (Sentiment, Entities, Syntax, etc.)
+- Analysis tabs work one at a time
 
 ---
 
@@ -41,7 +41,6 @@ To avoid sending too many requests:
 
 A web app that analyzes text using Google Cloud's Natural Language API. It can break down sentiment, detect entities, and analyze syntax. You can either enter your own text or pull from news articles using the Newsdata.io API.
 
-This project is complete and archived. API features are currently turned off due to billing limitations on Google Cloud, but everything else works as expected (per screenshots).
 
 ## Features
 
