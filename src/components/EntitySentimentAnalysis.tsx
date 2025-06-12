@@ -6,22 +6,53 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface EntitySentimentAnalysisProps {
   text: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, onChange}) => {
     const [entities, setEntities] = useState<any[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [lastAnalyzeTime, setLastAnalyzeTime] = useState<number | null>(null);
+    const throttleDelay = 60000;
+
+    const handleThrottle = (): boolean => {
+        const now = Date.now();
+        if (lastAnalyzeTime && now - lastAnalyzeTime < throttleDelay) {
+            setSnackbarMessage('Please wait before analyzing again.');
+            setShowSnackbar(true);
+            return true;
+        }
+        setLastAnalyzeTime(now);
+        return false;
+    };
 
     const analyzeEntitySentiment = async () => {
         if (!text) {
-            setError('Please enter text.');
+            setSnackbarMessage('Please enter text.');
+            setShowSnackbar(true);
             return;
         }
+
+        if (text.length > 1000) {
+            setSnackbarMessage('Text exceeds limit (1000 characters).');
+            setShowSnackbar(true);
+            return;
+        }
+
+        if (handleThrottle()) return;
+
         setLoading(true);
         setError(null);
 
@@ -30,14 +61,15 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
             {params: {text: text} }
             );
             setEntities(response.data.entities);
-            console.log('Entities:', entities);
+            console.log('Entities:', response.data.entities);
         }
         catch (error: any) {
           if (error.response && error.response.status === 400) {
-              setError(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
+              setSnackbarMessage(error.response.data || 'Text exceeds limit (1000 characters) or is invalid.');
           } else {
-              setError('Unexpected error analyzing entities, please try again later.');
+              setSnackbarMessage('Unexpected error analyzing entities, please try again later.');
           }
+          setShowSnackbar(true);
         }
         finally {
             setLoading(false);
@@ -86,6 +118,17 @@ const EntitySentimentAnalysis: React.FC<EntitySentimentAnalysisProps> = ({text, 
           </ul>
         </div>
       )}
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={4000}
+        onClose={() => setShowSnackbar(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ zIndex: 9999 }}
+      >
+        <Alert onClose={() => setShowSnackbar(false)} severity="warning" sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

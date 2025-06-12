@@ -19,6 +19,12 @@ const Dashboard: React.FC = () => {
         <div className="dashboard">
                   <Hyperspeed />
             <h1 className="dashboard-title">Enter/paste text to analyze</h1>
+            <p className="info-box">
+                <strong>Note:</strong><br/>
+                Please enter up to <strong>1000 characters</strong> of text.<br />
+                Avoid pasting large documents or code.<br />
+                You can re-analyze after <strong>60 seconds</strong> to avoid throttling.
+            </p>
             <div className="tabs">
                 <Button variant='contained'  onClick={() => setActiveTab('sentiment')} className={activeTab === 'sentiment' ? 'active' : ''}>
                     Sentiment Analysis

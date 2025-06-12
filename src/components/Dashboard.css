@@ -20,7 +20,19 @@ h1 {
 }
 h2 {
     font-size: 1.2em;
-    margin-top: 40px;
+    margin-top: 10px;
+    color: #eeeeee;
+}
+
+.info-box {
+  background-color: #295e41;
+  border-top: 5px solid #cbcfd3;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #beb2b2;
+  border-radius: 4px;
 }
 
 textarea, input[type="text"] {
@@ -28,7 +40,7 @@ textarea, input[type="text"] {
     padding: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
-    border: 1px solid #ccc;
+    border: 3px solid #327b89;
     border-radius: 5px;
 }
 .textBox-buttons {
@@ -39,7 +51,7 @@ textarea, input[type="text"] {
 }
 .dashboard-button {
     padding: 10px 20px;
-    background-color: #2c6ac7;
+    background-color: #295e41;
     color: white;
     border: none;
     border-radius: 5px;
@@ -47,19 +59,21 @@ textarea, input[type="text"] {
     transition: background-color 0.2s ease;
 }
 .dashboard-button:hover {
-    background-color: #205aaf;
+    background-color: #4e936d;
 }
 
 .dashboard-button:disabled {
-    background-color: #cccccc;
+    background-color: rgba(34, 33, 33, 0);
     cursor: not-allowed;
 }
 
 .results-section {
+    padding: 10px 10px;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    background-color: #f4f4f4;
+    background-color: #b9b5b5;
+    color: #242323
 }
 
 .error-message {
