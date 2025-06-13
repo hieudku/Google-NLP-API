@@ -20,7 +20,17 @@ Most section headers and result texts now animate as if they're being decrypted 
 - Speed is set at 100ms for a smooth reveal
 - Useful for titles, notes, API result summaries and lists
 - Adds a bit of visual interest to otherwise static text
-- Animations extracted from: https://www.reactbits.dev/
+- Animations extracted from Reactbits: https://www.reactbits.dev/
+---
+
+### Data Output & Analysis
+
+All five analysis will output combined forms of visualization/raw/excel-export-ready.
+
+- Raw data output are displayed as either entities or sentences with attached scores and values
+- Explainations and definitions of the terms and metrics used to evaluate the results
+- Export to Excel & CSV for assisting with further analysis and visualization - network graphs, heatmaps, etc.. (useful for Scikit/Rstudio)
+- Data Visualizations extracted from D3js: https://d3js.org/
 ---
 
 ### Rate Limiting
