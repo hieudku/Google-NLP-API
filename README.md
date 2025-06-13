@@ -1,3 +1,5 @@
+## *This isn’t AI trying to “understand” your text — it’s a tool for you to understand and write better, without AI.*
+
 # v1.1.0
 ## New Additions and Info
 
