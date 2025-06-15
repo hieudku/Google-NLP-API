@@ -1,15 +1,11 @@
 ## *This isn’t AI trying to “understand” your text — it’s a tool for you to understand and write better, without using AI.*
 
 # v1.1.0
-## New Additions and Info
 
-### 1. Animated Background
-![Particles](./public/msedge_pzGK9Adk1C.gif)
-
-### 2. Decrypted Text Animation - Sentiment
+### 1. Sentiment
 ![Decryption](./public/msedge_7wb3NlnX1h.gif)
 
-### 2. Decrypted Text Animation - Entity
+### 2. Entity
 ![Decryption](./public/msedge_UQctLcvFCJ.gif)
 
 ### Decrypt-style Text Animation
